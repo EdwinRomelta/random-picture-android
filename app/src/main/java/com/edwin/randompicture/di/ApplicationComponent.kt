@@ -1,15 +1,19 @@
 package com.edwin.randompicture.di
 
 import com.edwin.randompicture.RandomPictureApplication
+import com.edwin.randompicture.di.module.MainActivityModule
+import com.edwin.randompicture.di.module.ViewModelModule
 import com.edwin.randompicture.di.scope.PerApplication
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
+import dagger.android.support.AndroidSupportInjectionModule
 
 @PerApplication
 @Component(
         modules = [
-            AndroidInjectionModule::class]
+            AndroidSupportInjectionModule::class,
+            MainActivityModule::class,
+            ViewModelModule::class]
 )
 interface ApplicationComponent {
     @Component.Builder
