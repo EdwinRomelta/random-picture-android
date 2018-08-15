@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tools
@@ -21,26 +23,34 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation deps.kotlin.stdlib
 
     implementation deps.support.app_compat
+    implementation deps.support.v4
+    implementation deps.support.design
     implementation deps.constraint_layout
+
+    implementation deps.lifecycle.extensions
 
     implementation deps.dagger.runtime
     implementation deps.dagger.android
     implementation deps.dagger.android_support
 
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
     kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler
 
+    implementation deps.navigation.navigation_ui_ktx
     implementation deps.navigation.fragment_ktx
 
-    implementation deps.junit
+    implementation deps.camera_kit
+
+    testImplementation deps.junit
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.espresso.core
 

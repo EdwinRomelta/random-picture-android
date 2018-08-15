@@ -9,6 +9,8 @@ versions.junit = "4.12"
 versions.dagger = "2.17"
 versions.navigation = "1.0.0-alpha05"
 versions.constraint_layout = "1.1.2"
+versions.camera_kit = "0.13.1"
+versions.lifecycle = "1.1.1"
 
 def deps = [:]
 
@@ -19,7 +21,13 @@ deps.kotlin = kotlin
 
 def support = [:]
 support.app_compat = "com.android.support:appcompat-v7:$versions.support"
+support.v4 = "com.android.support:support-v4:$versions.support"
+support.design = "com.android.support:design:$versions.support"
 deps.support = support
+
+def lifecycle = [:]
+lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.lifecycle"
+deps.lifecycle = lifecycle
 
 def dagger = [:]
 dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
@@ -38,21 +46,21 @@ atsl.runner = "com.android.support.test:runner:$versions.atsl_runner"
 deps.atsl = atsl
 
 def navigation = [:]
-navigation.runtime = "android.arch.navigation:navigation-runtime:$versions.navigation"
+navigation.navigation_ui_ktx = "android.arch.navigation:navigation-ui-ktx:$versions.navigation"
 navigation.runtime_ktx = "android.arch.navigation:navigation-runtime-ktx:$versions.navigation"
-navigation.fragment = "android.arch.navigation:navigation-fragment:$versions.navigation"
 navigation.fragment_ktx = "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
 navigation.safe_args_plugin = "android.arch.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
 navigation.testing_ktx = "android.arch.navigation:navigation-testing-ktx:$versions.navigation"
 deps.navigation = navigation
 
 deps.junit = "junit:junit:$versions.junit"
+deps.camera_kit = "com.wonderkiln:camerakit:$versions.camera_kit"
 deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 ext.deps = deps
 
 def build_versions = [:]
-build_versions.min_sdk = 14
+build_versions.min_sdk = 15
 build_versions.target_sdk = 27
 build_versions.build_tools = "28.0.1"
 ext.build_versions = build_versions
