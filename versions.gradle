@@ -1,0 +1,45 @@
+ext.deps = [:]
+def versions = [:]
+versions.kotlin = "1.2.50"
+versions.android_gradle_plugin = "3.3.0-alpha03"
+versions.support = "27.1.1"
+versions.atsl_runner = "1.0.2"
+versions.espresso = "3.0.2"
+versions.junit = "4.12"
+
+
+def deps = [:]
+
+def support = [:]
+support.app_compat = "com.android.support:appcompat-v7:$versions.support"
+deps.support = support
+
+def espresso = [:]
+espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
+deps.espresso = espresso
+
+def atsl = [:]
+atsl.runner = "com.android.support.test:runner:$versions.atsl_runner"
+deps.atsl = atsl
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+deps.kotlin = kotlin
+
+deps.junit = "junit:junit:$versions.junit"
+
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+ext.deps = deps
+
+def build_versions = [:]
+build_versions.min_sdk = 14
+build_versions.target_sdk = 27
+build_versions.build_tools = "28.0.1"
+ext.build_versions = build_versions
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+}
+ext.addRepos = this.&addRepos
