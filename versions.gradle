@@ -6,13 +6,26 @@ versions.support = "27.1.1"
 versions.atsl_runner = "1.0.2"
 versions.espresso = "3.0.2"
 versions.junit = "4.12"
-
+versions.dagger = "2.17"
 
 def deps = [:]
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+deps.kotlin = kotlin
 
 def support = [:]
 support.app_compat = "com.android.support:appcompat-v7:$versions.support"
 deps.support = support
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
+deps.dagger = dagger
 
 def espresso = [:]
 espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
@@ -21,11 +34,6 @@ deps.espresso = espresso
 def atsl = [:]
 atsl.runner = "com.android.support.test:runner:$versions.atsl_runner"
 deps.atsl = atsl
-
-def kotlin = [:]
-kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
-kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-deps.kotlin = kotlin
 
 deps.junit = "junit:junit:$versions.junit"
 

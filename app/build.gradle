@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -27,6 +27,13 @@ dependencies {
     implementation deps.kotlin.stdlib
 
     implementation deps.support.app_compat
+
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+
+    kapt deps.dagger.android_support_compiler
+    kapt deps.dagger.compiler
 
     implementation deps.junit
     androidTestImplementation deps.atsl.runner
