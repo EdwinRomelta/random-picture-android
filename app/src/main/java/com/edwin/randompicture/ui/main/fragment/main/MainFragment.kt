@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.MainFragmentBinding
 import com.edwin.randompicture.di.Injectable
+import com.edwin.randompicture.util.autoCleared
 import javax.inject.Inject
 
 class MainFragment : Fragment(), Injectable {
@@ -23,6 +24,7 @@ class MainFragment : Fragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    var binding by autoCleared<MainFragmentBinding>()
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +33,7 @@ class MainFragment : Fragment(), Injectable {
         databinding.onCapture = View.OnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_captureActivity)
         }
+        binding = databinding
         return databinding.root
     }
 

@@ -1,9 +1,11 @@
 package com.edwin.randompicture.ui.capture
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.edwin.randompicture.R
+import com.edwin.randompicture.databinding.MainActivityBinding
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -16,7 +18,7 @@ class CaptureActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.capture_activity)
+        DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.capture_activity)
     }
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector

@@ -1,14 +1,15 @@
 package com.edwin.randompicture.ui.capture.fragment.capture
 
 import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.edwin.randompicture.R
-import kotlinx.android.synthetic.main.capture_fragment.*
+import com.edwin.randompicture.databinding.CaptureFragmentBinding
+import com.edwin.randompicture.util.autoCleared
 
 class CaptureFragment : Fragment() {
 
@@ -16,11 +17,14 @@ class CaptureFragment : Fragment() {
         fun newInstance() = CaptureFragment()
     }
 
+    var binding by autoCleared<CaptureFragmentBinding>()
     private lateinit var viewModel: CaptureViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.capture_fragment, container, false)
+        val databinding: CaptureFragmentBinding = DataBindingUtil.inflate(layoutInflater, R.layout.capture_fragment, container, false)
+        binding = databinding
+        return databinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -31,11 +35,11 @@ class CaptureFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        cameraView.start()
+        binding.cameraView.start()
     }
 
     override fun onStop() {
-        cameraView.stop()
+        binding.cameraView.stop()
         super.onStop()
     }
 }
