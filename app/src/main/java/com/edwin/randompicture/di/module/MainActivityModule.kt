@@ -11,12 +11,12 @@ import dagger.android.ContributesAndroidInjector
 abstract class MainActivityModule {
 
     @PerActivity
-    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    @ContributesAndroidInjector(modules = [MainFragmentBuildersModule::class])
     abstract fun contributeMainActivity(): MainActivity
 }
 
 @Module
-abstract class FragmentBuildersModule {
+abstract class MainFragmentBuildersModule {
 
     @PerFragment
     @ContributesAndroidInjector

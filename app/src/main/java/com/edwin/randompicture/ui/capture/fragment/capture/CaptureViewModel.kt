@@ -1,4 +1,4 @@
-package com.edwin.randompicture.ui.main.fragment.capture
+package com.edwin.randompicture.ui.capture.fragment.capture
 
 import android.arch.lifecycle.ViewModel
 

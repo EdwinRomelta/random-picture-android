@@ -1,6 +1,7 @@
 package com.edwin.randompicture.di
 
 import com.edwin.randompicture.RandomPictureApplication
+import com.edwin.randompicture.di.module.CaptureActivityModule
 import com.edwin.randompicture.di.module.MainActivityModule
 import com.edwin.randompicture.di.module.ViewModelModule
 import com.edwin.randompicture.di.scope.PerApplication
@@ -13,6 +14,7 @@ import dagger.android.support.AndroidSupportInjectionModule
         modules = [
             AndroidSupportInjectionModule::class,
             MainActivityModule::class,
+            CaptureActivityModule::class,
             ViewModelModule::class]
 )
 interface ApplicationComponent {

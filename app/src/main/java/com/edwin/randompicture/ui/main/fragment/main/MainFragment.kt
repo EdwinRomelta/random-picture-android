@@ -29,7 +29,7 @@ class MainFragment : Fragment(), Injectable {
                               savedInstanceState: Bundle?): View? {
         val databinding: MainFragmentBinding = DataBindingUtil.inflate(layoutInflater, R.layout.main_fragment, container, false)
         databinding.onCapture = View.OnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_captureFragment)
+            findNavController().navigate(R.id.action_mainFragment_to_captureActivity)
         }
         return databinding.root
     }
