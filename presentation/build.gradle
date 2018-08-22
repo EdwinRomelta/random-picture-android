@@ -1,0 +1,23 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+    }
+}
+
+dependencies {
+    compile project(':domain')
+
+    implementation deps.kotlin.stdlib
+    implementation deps.lifecycle.extensions
+
+    implementation deps.rxjava2
+    implementation deps.dagger.runtime
+}
+

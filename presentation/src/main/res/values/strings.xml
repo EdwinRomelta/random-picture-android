@@ -1,0 +1,4 @@
+<resources>
+    <string name="all_appname">Domain</string>
+    <string name="capture_errorprocessingimage">Failed to process captured image</string>
+</resources>

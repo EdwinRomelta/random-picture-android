@@ -1,5 +1,6 @@
 ext.deps = [:]
 def versions = [:]
+versions.anko = "0.10.5"
 versions.kotlin = "1.2.50"
 versions.android_gradle_plugin = "3.3.0-alpha03"
 versions.support = "27.1.1"
@@ -11,6 +12,10 @@ versions.navigation = "1.0.0-alpha05"
 versions.constraint_layout = "1.1.2"
 versions.camera_kit = "0.13.1"
 versions.lifecycle = "1.1.1"
+versions.rxjava2 = "2.2.0"
+versions.rx_android = "2.1.0"
+versions.rx_binding = "2.1.1"
+versions.rxpermissions = "0.10.2"
 
 def deps = [:]
 
@@ -18,6 +23,12 @@ def kotlin = [:]
 kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 deps.kotlin = kotlin
+
+def anko = [:]
+anko.support = "org.jetbrains.anko:anko-appcompat-v7:$versions.anko"
+anko.common = "org.jetbrains.anko:anko-commons:$versions.anko"
+anko.design = "org.jetbrains.anko:anko-design:$versions.anko"
+deps.anko = anko
 
 def support = [:]
 support.app_compat = "com.android.support:appcompat-v7:$versions.support"
@@ -53,9 +64,18 @@ navigation.safe_args_plugin = "android.arch.navigation:navigation-safe-args-grad
 navigation.testing_ktx = "android.arch.navigation:navigation-testing-ktx:$versions.navigation"
 deps.navigation = navigation
 
+def rxbinding = [:]
+rxbinding.rx_binding = "com.jakewharton.rxbinding2:rxbinding-kotlin:$versions.rx_binding"
+rxbinding.design = "com.jakewharton.rxbinding2:rxbinding-design:$versions.rx_binding"
+deps.rxbinding = rxbinding
+
 deps.junit = "junit:junit:$versions.junit"
 deps.camera_kit = "com.wonderkiln:camerakit:$versions.camera_kit"
 deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
+deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
+deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+deps.rxpermission = "com.github.tbruyelle:rxpermissions:$versions.rxpermissions"
+
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 ext.deps = deps
 
@@ -68,5 +88,7 @@ ext.build_versions = build_versions
 def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
+    handler.maven { url 'https://jitpack.io' }
 }
+
 ext.addRepos = this.&addRepos

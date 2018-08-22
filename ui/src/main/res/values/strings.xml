@@ -1,0 +1,9 @@
+<resources>
+    <string name="all_appname">Random Picture</string>
+    <string name="all_ok">Ok</string>
+
+    <string name="permissionalert_opensetting">Open Setting</string>
+    <string name="capturescreen_permissionrationale">In order to capture image we need camera and storage permission</string>
+    <string name="capturescreen_permissiondeny">Open Settings, then tap Permissions and turn camera and storage permission</string>
+    <string name="permissiondialog_nosettingintent">Unable to open setting</string>
+</resources>

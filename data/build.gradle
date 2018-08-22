@@ -1,0 +1,14 @@
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+dependencies {
+    compile project(':domain')
+
+    implementation deps.kotlin.stdlib
+    implementation deps.rxjava2
+
+    implementation deps.dagger.runtime
+
+}
