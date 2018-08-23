@@ -7,13 +7,13 @@
 
         <variable
             name="photoViewModel"
-            type="com.edwin.randompicture.viewmodel.PhotoViewModel" />
+            type="com.edwin.randompicture.presentation.viewmodel.PhotoViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.capture.fragment.CaptureFragment">
+        tools:context=".screen.capture.fragment.CaptureFragment">
 
         <com.wonderkiln.camerakit.CameraView
             android:id="@+id/camera_view"

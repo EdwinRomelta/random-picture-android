@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/captureFragment"
-        android:name="com.edwin.randompicture.ui.capture.fragment.CaptureFragment"
+        android:name="com.edwin.randompicture.ui.screen.capture.fragment.CaptureFragment"
         android:label="capture_fragment"
-        tools:layout="@layout/capture_fragment" />
+        tools:layout="@layout/capture_fragment">
+        <action
+            android:id="@+id/action_captureFragment_to_publishFragment"
+            app:destination="@id/publishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/publishFragment"
+        android:name="com.edwin.randompicture.ui.screen.capture.fragment.PublishFragment"
+        android:label="fragment_publish"
+        tools:layout="@layout/fragment_publish">
+        <argument
+            android:name="photoView"
+            app:argType="reference" />
+    </fragment>
 </navigation>

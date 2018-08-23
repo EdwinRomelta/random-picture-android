@@ -6,4 +6,7 @@
     <string name="capturescreen_permissionrationale">In order to capture image we need camera and storage permission</string>
     <string name="capturescreen_permissiondeny">Open Settings, then tap Permissions and turn camera and storage permission</string>
     <string name="permissiondialog_nosettingintent">Unable to open setting</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

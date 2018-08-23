@@ -16,6 +16,7 @@ versions.rxjava2 = "2.2.0"
 versions.rx_android = "2.1.0"
 versions.rx_binding = "2.1.1"
 versions.rxpermissions = "0.10.2"
+versions.paperparcel = "2.0.6"
 
 def deps = [:]
 
@@ -68,6 +69,12 @@ def rxbinding = [:]
 rxbinding.rx_binding = "com.jakewharton.rxbinding2:rxbinding-kotlin:$versions.rx_binding"
 rxbinding.design = "com.jakewharton.rxbinding2:rxbinding-design:$versions.rx_binding"
 deps.rxbinding = rxbinding
+
+def paperparcel = [:]
+paperparcel.runtime = "nz.bradcampbell:paperparcel:$versions.paperparcel"
+paperparcel.kotlin = "nz.bradcampbell:paperparcel-kotlin:$versions.paperparcel"
+paperparcel.compiler = "nz.bradcampbell:paperparcel-compiler:$versions.paperparcel"
+deps.paperparcel = paperparcel
 
 deps.junit = "junit:junit:$versions.junit"
 deps.camera_kit = "com.wonderkiln:camerakit:$versions.camera_kit"

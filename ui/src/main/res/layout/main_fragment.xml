@@ -12,7 +12,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.fragment.MainFragment">
+        tools:context=".screen.main.fragment.MainFragment">
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"

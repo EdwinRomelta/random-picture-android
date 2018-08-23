@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".RandomPictureApplication"
+        android:name=".ui.RandomPictureApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/all_appname"
@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.screen.main.MainActivity"
             android:label="@string/all_appname"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".ui.capture.CaptureActivity"
+            android:name=".ui.screen.capture.CaptureActivity"
             android:screenOrientation="portrait" />
     </application>
 </manifest>

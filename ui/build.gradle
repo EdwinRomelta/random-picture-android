@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -47,6 +48,10 @@ dependencies {
     implementation deps.dagger.runtime
     implementation deps.dagger.android
     implementation deps.dagger.android_support
+
+//    implementation deps.paperparcel.runtime
+//    implementation deps.paperparcel.kotlin
+//    kapt deps.paperparcel.compiler
 
     implementation deps.rxjava2
     implementation deps.rxbinding.rx_binding

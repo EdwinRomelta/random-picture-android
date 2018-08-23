@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.edwin.randompicture.ui.main.fragment.MainFragment"
+        android:name="com.edwin.randompicture.ui.screen.main.fragment.MainFragment"
         android:label="@string/all_appname"
         tools:layout="@layout/main_fragment">
         <action
@@ -16,6 +16,6 @@
     </fragment>
     <activity
         android:id="@+id/captureActivity"
-        android:name="com.edwin.randompicture.ui.capture.CaptureActivity"
+        android:name="com.edwin.randompicture.ui.screen.capture.CaptureActivity"
         android:label="CaptureActivity" />
 </navigation>
