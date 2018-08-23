@@ -1,4 +1,4 @@
-package com.edwin.randompicture.presentation.viewmodel
+package com.edwin.randompicture.presentation.viewmodel.photo
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -7,6 +7,7 @@ import com.edwin.randompicture.presentation.R
 import com.edwin.randompicture.presentation.data.Resource
 import com.edwin.randompicture.presentation.mapper.PhotoMapper
 import com.edwin.randompicture.presentation.model.PhotoView
+import com.edwin.randompicture.presentation.viewmodel.BaseViewModel
 import javax.inject.Inject
 
 class PhotoViewModel @Inject constructor(private val savePhoto: SavePhoto,

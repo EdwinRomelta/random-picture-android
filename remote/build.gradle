@@ -1,0 +1,8 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation deps.kotlin.stdlib
+    implementation deps.rxjava2
+
+    implementation deps.dagger.runtime
+}

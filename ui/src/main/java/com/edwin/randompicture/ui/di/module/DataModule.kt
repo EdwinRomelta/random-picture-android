@@ -1,8 +1,8 @@
 package com.edwin.randompicture.ui.di.module
 
-import com.edwin.randompicture.cache.PhotoCacheImpl
+import com.edwin.randompicture.data.PendingPostDataRepository
 import com.edwin.randompicture.data.PhotoDataRepository
-import com.edwin.randompicture.data.repository.photo.PhotoCache
+import com.edwin.randompicture.domain.repository.PendingPostRepository
 import com.edwin.randompicture.domain.repository.PhotoRepository
 import com.edwin.randompicture.ui.di.scope.PerApplication
 import dagger.Module
@@ -17,5 +17,5 @@ class DataModule {
 
     @PerApplication
     @Provides
-    fun providePhotoCache(photoCacheImpl: PhotoCacheImpl): PhotoCache = photoCacheImpl
+    fun providePendingPostDataRepository(pendingPostDataRepository: PendingPostDataRepository): PendingPostRepository = pendingPostDataRepository
 }

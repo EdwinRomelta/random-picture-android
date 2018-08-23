@@ -1,7 +1,7 @@
 package com.edwin.randompicture.data
 
 import com.edwin.randompicture.data.mapper.PhotoMapper
-import com.edwin.randompicture.data.source.PhotoDataStoreFactory
+import com.edwin.randompicture.data.source.photo.PhotoDataStoreFactory
 import com.edwin.randompicture.domain.model.Photo
 import com.edwin.randompicture.domain.repository.PhotoRepository
 import io.reactivex.Single

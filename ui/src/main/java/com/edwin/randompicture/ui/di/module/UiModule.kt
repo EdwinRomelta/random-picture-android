@@ -1,6 +1,8 @@
 package com.edwin.randompicture.ui.di.module
 
+import android.app.Application
 import com.edwin.randompicture.domain.executor.PostExecutionThread
+import com.edwin.randompicture.ui.RandomPictureApplication
 import com.edwin.randompicture.ui.di.scope.PerActivity
 import com.edwin.randompicture.ui.di.scope.PerApplication
 import com.edwin.randompicture.ui.screen.UiThread
@@ -15,9 +17,11 @@ class UiModule {
 
     @Provides
     @PerApplication
-    internal fun providePostExecutionThread(uiThread: UiThread): PostExecutionThread {
-        return uiThread
-    }
+    internal fun providePostExecutionThread(uiThread: UiThread): PostExecutionThread = uiThread
+
+    @Provides
+    @PerApplication
+    internal fun provideApplication(randomPictureApplication: RandomPictureApplication): Application = randomPictureApplication
 }
 
 @Module

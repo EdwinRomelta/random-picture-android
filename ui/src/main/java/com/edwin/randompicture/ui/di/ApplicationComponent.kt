@@ -16,7 +16,8 @@ import dagger.android.support.AndroidSupportInjectionModule
             UiModule::class,
             PresentationModule::class,
             DomainModule::class,
-            DataModule::class]
+            DataModule::class,
+            CacheModule::class]
 )
 interface ApplicationComponent {
     @Component.Builder

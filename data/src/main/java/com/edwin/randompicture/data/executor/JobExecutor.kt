@@ -35,9 +35,7 @@ open class JobExecutor @Inject constructor() : ThreadExecutor {
     private class JobThreadFactory : ThreadFactory {
         private var counter = 0
 
-        override fun newThread(runnable: Runnable): Thread {
-            return Thread(runnable, THREAD_NAME + counter++)
-        }
+        override fun newThread(runnable: Runnable): Thread = Thread(runnable, THREAD_NAME + counter++)
 
         companion object {
             private val THREAD_NAME = "android_"

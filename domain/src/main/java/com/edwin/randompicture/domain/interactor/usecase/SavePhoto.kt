@@ -12,13 +12,8 @@ class SavePhoto @Inject constructor(
         private val photoRepository: PhotoRepository,
         threadExecutor: ThreadExecutor,
         postExecutionThread: PostExecutionThread) :
-        SingleUseCase<Photo, ByteArray?>(threadExecutor, postExecutionThread) {
+        SingleUseCase<Photo, ByteArray>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseObservable(params: ByteArray?): Single<Photo> {
-        return if (params != null) {
-            photoRepository.savePhoto(Photo(byteArray = params))
-        } else
-            throw IllegalArgumentException("Empty Params")
-    }
+    override fun buildUseCaseObservable(params: ByteArray): Single<Photo> = photoRepository.savePhoto(Photo(byteArray = params))
 
 }

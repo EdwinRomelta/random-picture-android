@@ -18,8 +18,8 @@ import com.edwin.randompicture.databinding.CaptureFragmentBinding
 import com.edwin.randompicture.presentation.data.Resource
 import com.edwin.randompicture.presentation.data.ResourceState
 import com.edwin.randompicture.presentation.model.PhotoView
-import com.edwin.randompicture.presentation.viewmodel.PhotoViewModel
-import com.edwin.randompicture.presentation.viewmodel.PhotoViewModelFactory
+import com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModel
+import com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModelFactory
 import com.edwin.randompicture.ui.base.BaseFragment
 import com.edwin.randompicture.ui.di.Injectable
 import com.edwin.randompicture.ui.mapper.PhotoMapper

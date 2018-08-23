@@ -10,7 +10,5 @@ class PresentationModule {
 
     @Provides
     @PerApplication
-    internal fun provideViewModelFactory(): ViewModelProvider.Factory {
-        return ViewModelProvider.NewInstanceFactory()
-    }
+    internal fun provideViewModelFactory(): ViewModelProvider.Factory = ViewModelProvider.NewInstanceFactory()
 }

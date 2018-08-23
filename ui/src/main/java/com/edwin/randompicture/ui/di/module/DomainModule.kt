@@ -11,7 +11,5 @@ class DomainModule {
 
     @Provides
     @PerApplication
-    internal fun provideThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor {
-        return jobExecutor
-    }
+    internal fun provideThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor = jobExecutor
 }

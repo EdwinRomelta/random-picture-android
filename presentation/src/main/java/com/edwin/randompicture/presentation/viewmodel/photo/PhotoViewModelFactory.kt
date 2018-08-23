@@ -1,4 +1,4 @@
-package com.edwin.randompicture.presentation.viewmodel
+package com.edwin.randompicture.presentation.viewmodel.photo
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

@@ -3,7 +3,7 @@ package com.edwin.randompicture.ui.di.module
 import android.support.v4.app.Fragment
 import com.edwin.randompicture.domain.interactor.usecase.SavePhoto
 import com.edwin.randompicture.presentation.mapper.PhotoMapper
-import com.edwin.randompicture.presentation.viewmodel.PhotoViewModelFactory
+import com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModelFactory
 import com.edwin.randompicture.ui.di.scope.PerFragment
 import com.edwin.randompicture.ui.screen.capture.fragment.CaptureFragment
 import com.edwin.randompicture.ui.screen.capture.fragment.PublishFragment
@@ -16,10 +16,7 @@ class CaptureActivityModule {
 
     @Provides
     fun providePhotoViewModelFactory(savePhoto: SavePhoto,
-                                     photoMapper: PhotoMapper):
-            PhotoViewModelFactory {
-        return PhotoViewModelFactory(savePhoto, photoMapper)
-    }
+                                     photoMapper: PhotoMapper): PhotoViewModelFactory = PhotoViewModelFactory(savePhoto, photoMapper)
 }
 
 @Module

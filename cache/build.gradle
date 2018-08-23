@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tools
@@ -17,4 +19,7 @@ dependencies {
     implementation deps.rxjava2
 
     implementation deps.dagger.runtime
+
+    implementation deps.room.runtime
+    kapt deps.room.compiler
 }

@@ -1,4 +1,4 @@
-package com.edwin.randompicture.data.source
+package com.edwin.randompicture.data.source.photo
 
 import javax.inject.Inject
 

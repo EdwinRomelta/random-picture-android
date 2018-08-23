@@ -7,7 +7,7 @@
 
         <variable
             name="photoViewModel"
-            type="com.edwin.randompicture.presentation.viewmodel.PhotoViewModel" />
+            type="com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

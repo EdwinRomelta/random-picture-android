@@ -13,14 +13,10 @@ open class BaseFragment : Fragment() {
     private val onStartDisposable: CompositeDisposable = CompositeDisposable()
     private val onResumeDisposable: CompositeDisposable = CompositeDisposable()
 
-    final override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return onCreateView(onCreateDisposable, inflater, container, savedInstanceState)
-    }
+    final override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = onCreateView(onCreateDisposable, inflater, container, savedInstanceState)
 
     open fun onCreateView(onCreateDisposable: CompositeDisposable,
-                          inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return null
-    }
+                          inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = null
 
     final override fun onStart() {
         super.onStart()
