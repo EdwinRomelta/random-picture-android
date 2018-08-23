@@ -12,15 +12,8 @@ import javax.inject.Inject
 class PhotoViewModel @Inject constructor(private val savePhoto: SavePhoto,
                                          private val photoMapper: PhotoMapper) : BaseViewModel() {
 
-    val photo: LiveData<Resource<PhotoView>>
-        get() = photoLiveData
-    private val photoLiveData = MutableLiveData<Resource<PhotoView>>()
-
-    init {
-        photoLiveData.postValue(Resource.success(PhotoView()))
-    }
-
-    fun createPhoto(byteArray: ByteArray) {
+    fun createPhoto(byteArray: ByteArray): LiveData<Resource<PhotoView>> {
+        val photoLiveData = MutableLiveData<Resource<PhotoView>>()
         photoLiveData.postValue(Resource.loading())
         compositeDisposable.add(savePhoto.execute(byteArray)
                 .subscribe(
@@ -31,5 +24,6 @@ class PhotoViewModel @Inject constructor(private val savePhoto: SavePhoto,
                             photoLiveData.postValue(Resource.error(R.string.capture_errorprocessingimage))
                         }
                 ))
+        return photoLiveData
     }
 }

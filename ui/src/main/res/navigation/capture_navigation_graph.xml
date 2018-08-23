@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/captureFragment"
         android:name="com.edwin.randompicture.ui.screen.capture.fragment.CaptureFragment"
-        android:label="capture_fragment"
+        android:label="Camera"
         tools:layout="@layout/capture_fragment">
         <action
             android:id="@+id/action_captureFragment_to_publishFragment"
@@ -17,10 +17,11 @@
     <fragment
         android:id="@+id/publishFragment"
         android:name="com.edwin.randompicture.ui.screen.capture.fragment.PublishFragment"
-        android:label="fragment_publish"
-        tools:layout="@layout/fragment_publish">
+        android:label="Publish"
+        tools:layout="@layout/publish_fragment">
         <argument
-            android:name="photoView"
-            app:argType="reference" />
+            android:name="filePath"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 </navigation>

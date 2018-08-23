@@ -11,6 +11,7 @@ open class BaseFragment : Fragment() {
 
     private val onCreateDisposable: CompositeDisposable = CompositeDisposable()
     private val onStartDisposable: CompositeDisposable = CompositeDisposable()
+    private val onResumeDisposable: CompositeDisposable = CompositeDisposable()
 
     final override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return onCreateView(onCreateDisposable, inflater, container, savedInstanceState)
@@ -28,6 +29,20 @@ open class BaseFragment : Fragment() {
 
     open fun onStart(onStartDisposable: CompositeDisposable) {
         super.onStart()
+    }
+
+    final override fun onResume() {
+        super.onResume()
+        onResume(onResumeDisposable)
+    }
+
+    open fun onResume(onResumeDisposable: CompositeDisposable) {
+        super.onStart()
+    }
+
+    override fun onPause() {
+        onResumeDisposable.dispose()
+        super.onPause()
     }
 
     override fun onStop() {

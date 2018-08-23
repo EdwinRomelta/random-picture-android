@@ -49,9 +49,12 @@ dependencies {
     implementation deps.dagger.android
     implementation deps.dagger.android_support
 
-//    implementation deps.paperparcel.runtime
-//    implementation deps.paperparcel.kotlin
-//    kapt deps.paperparcel.compiler
+    implementation deps.paperparcel.runtime
+    implementation deps.paperparcel.kotlin
+    kapt deps.paperparcel.compiler
+
+    implementation deps.glide.runtime
+    kapt deps.glide.compiler
 
     implementation deps.rxjava2
     implementation deps.rxbinding.rx_binding
