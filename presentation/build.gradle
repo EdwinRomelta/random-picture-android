@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-    compile project(':domain')
+    implementation project(':domain')
 
     implementation deps.kotlin.stdlib
     implementation deps.lifecycle.extensions
