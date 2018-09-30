@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="photoViewModel"
             type="com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModel" />

@@ -1,4 +1,4 @@
 <resources>
-    <string name="all_appname">Domain</string>
     <string name="capture_errorprocessingimage">Failed to process captured image</string>
+    <string name="posts_errorretriveposts">Failed to retriving posts</string>
 </resources>

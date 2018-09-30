@@ -1,8 +1,15 @@
 apply plugin: 'kotlin'
 
 dependencies {
+    implementation project(':data')
+
     implementation deps.kotlin.stdlib
     implementation deps.rxjava2
 
     implementation deps.dagger.runtime
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.rxjava2
+    implementation deps.okhttp3
 }
+

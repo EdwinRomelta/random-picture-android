@@ -12,6 +12,8 @@ versions.navigation = "1.0.0-alpha05"
 versions.constraint_layout = "1.1.2"
 versions.camera_kit = "0.13.1"
 versions.lifecycle = "1.1.1"
+versions.okhttp3 = "3.11.0"
+versions.retrofit = "2.4.0"
 versions.rxjava2 = "2.2.0"
 versions.rx_android = "2.1.0"
 versions.rx_binding = "2.1.1"
@@ -36,6 +38,7 @@ deps.anko = anko
 def support = [:]
 support.app_compat = "com.android.support:appcompat-v7:$versions.support"
 support.v4 = "com.android.support:support-v4:$versions.support"
+support.cardview = "com.android.support:cardview-v7:$versions.support"
 support.design = "com.android.support:design:$versions.support"
 deps.support = support
 
@@ -89,6 +92,13 @@ glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
 glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
 deps.glide = glide
 
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+deps.retrofit = retrofit
+
+deps.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
 deps.junit = "junit:junit:$versions.junit"
 deps.camera_kit = "com.wonderkiln:camerakit:$versions.camera_kit"
 deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
