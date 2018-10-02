@@ -27,5 +27,6 @@ dependencies {
     implementation deps.dagger.runtime
 
     implementation deps.room.runtime
+    implementation deps.room.rxjava2
     kapt deps.room.compiler
 }

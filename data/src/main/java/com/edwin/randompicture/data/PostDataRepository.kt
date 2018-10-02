@@ -5,6 +5,7 @@ import com.edwin.randompicture.data.source.post.PostDataStoreFactory
 import com.edwin.randompicture.domain.model.Post
 import com.edwin.randompicture.domain.repository.PostRepository
 import io.reactivex.Flowable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class PostDataRepository @Inject constructor(private val factory: PostDataStoreFactory,
@@ -16,4 +17,7 @@ class PostDataRepository @Inject constructor(private val factory: PostDataStoreF
                         postEntityList.map { postMapper.mapFromEntity(it) }
                     }
 
+    override fun publishPost(post: Post): Single<Post> =
+            factory.retrieveRemoteDataStore().publishPost(postMapper.mapToEntity(post))
+                    .map { postMapper.mapFromEntity(it) }
 }

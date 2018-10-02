@@ -6,4 +6,6 @@ import io.reactivex.Single
 interface PostRemote {
 
     fun getPost(): Single<List<PostEntity>>
+
+    fun publishPost(postEntity: PostEntity): Single<PostEntity>
 }

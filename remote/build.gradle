@@ -10,6 +10,7 @@ dependencies {
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson
     implementation deps.retrofit.rxjava2
-    implementation deps.okhttp3
+    implementation deps.okhttp3.runtime
+    implementation deps.okhttp3.interceptor
 }
 

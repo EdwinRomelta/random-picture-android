@@ -21,6 +21,7 @@ versions.rxpermissions = "0.10.2"
 versions.paperparcel = "2.0.6"
 versions.glide = "4.8.0"
 versions.room = "1.1.1"
+versions.work = "1.0.0-alpha09"
 
 def deps = [:]
 
@@ -98,7 +99,17 @@ retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
 retrofit.rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
 deps.retrofit = retrofit
 
-deps.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
+def work = [:]
+work.runtime = "android.arch.work:work-runtime-ktx:$versions.work"
+work.testing = "android.arch.work:work-testing:$versions.work"
+work.firebase = "android.arch.work:work-firebase:$versions.work"
+deps.work = work
+
+def okhttp3 = [:]
+okhttp3.runtime = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
+okhttp3.interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
+deps.okhttp3 = okhttp3
+
 deps.junit = "junit:junit:$versions.junit"
 deps.camera_kit = "com.wonderkiln:camerakit:$versions.camera_kit"
 deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"

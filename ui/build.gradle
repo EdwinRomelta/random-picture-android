@@ -70,6 +70,11 @@ dependencies {
     implementation deps.navigation.navigation_ui_ktx
     implementation deps.navigation.fragment_ktx
 
+    implementation (deps.work.runtime){
+        exclude group: 'android.arch.lifecycle'
+        exclude group: 'android.arch.persistence.room'
+    }
+
     implementation deps.camera_kit
 
     testImplementation deps.junit

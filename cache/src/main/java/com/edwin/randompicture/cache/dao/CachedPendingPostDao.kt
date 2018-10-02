@@ -2,6 +2,7 @@ package com.edwin.randompicture.cache.dao
 
 import android.arch.persistence.room.*
 import com.edwin.randompicture.cache.model.CachedPendingPost
+import io.reactivex.Flowable
 
 
 @Dao
@@ -16,7 +17,7 @@ interface CachedPendingPostDao {
     fun getFirstPendingPost(): CachedPendingPost
 
     @Query("Select * FROM $TABLE_NAME WHERE $FIELD_ID = :id")
-    fun getPendingPostById(id: Long): CachedPendingPost
+    fun getPendingPostById(id: Long): Flowable<CachedPendingPost>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPendingPost(pendingPost: CachedPendingPost): Long

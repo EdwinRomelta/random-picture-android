@@ -49,7 +49,7 @@ class PublishFragment : BaseFragment(), Injectable {
         binding = databinding
         onCreateDisposable.add(binding.publishButton.clicks()
                 .subscribe {
-                    publishLiveData = pendingPostViewModel.createPendingPost(filePath, databinding.captionEditText.toString())
+                    publishLiveData = pendingPostViewModel.createPendingPost(filePath, databinding.captionEditText.text.toString())
                     publishLiveData?.let { liveData ->
                         if (liveData.hasActiveObservers())
                             liveData.removeObservers(this)

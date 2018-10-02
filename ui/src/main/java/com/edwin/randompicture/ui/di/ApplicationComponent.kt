@@ -2,6 +2,7 @@ package com.edwin.randompicture.ui.di
 
 import com.edwin.randompicture.ui.RandomPictureApplication
 import com.edwin.randompicture.ui.di.module.*
+import com.edwin.randompicture.ui.di.module.worker.WorkerModule
 import com.edwin.randompicture.ui.di.scope.PerApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -11,6 +12,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 @Component(
         modules = [
             AndroidSupportInjectionModule::class,
+            AndroidWorkerInjectionModule::class,
             MainActivityModule::class,
             CaptureActivityModule::class,
             UiModule::class,
@@ -18,7 +20,8 @@ import dagger.android.support.AndroidSupportInjectionModule
             DomainModule::class,
             DataModule::class,
             CacheModule::class,
-            RemoteModule::class]
+            RemoteModule::class,
+            WorkerModule::class]
 )
 interface ApplicationComponent {
     @Component.Builder
