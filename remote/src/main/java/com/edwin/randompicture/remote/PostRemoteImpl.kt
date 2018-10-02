@@ -3,6 +3,7 @@ package com.edwin.randompicture.remote
 import com.edwin.randompicture.data.model.PostEntity
 import com.edwin.randompicture.data.repository.post.PostRemote
 import com.edwin.randompicture.remote.mapper.PostMapper
+import com.edwin.randompicture.remote.thirdparty.okhttp.toRequestBody
 import io.reactivex.Single
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -26,8 +27,8 @@ class PostRemoteImpl @Inject constructor(private val randomPictureService: Rando
         val file = MultipartBody.Part.createFormData("image", uploadFile.name, requestFile)
 
         return randomPictureService.postPost(file = file,
-                caption = postEntity.text,
-                createTimeStamp = postEntity.timeStamp)
+                caption = postEntity.text.toRequestBody(),
+                createTimeStamp = postEntity.timeStamp.toRequestBody())
                 .map { postMapper.mapFromRemote(it) }
     }
 }

@@ -8,6 +8,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+const val DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+
 object RandomPictureServiceFactory {
 
     private val logging = HttpLoggingInterceptor()
@@ -22,7 +24,7 @@ object RandomPictureServiceFactory {
                     .build()
     private val gson = GsonBuilder()
             .setLenient()
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            .setDateFormat(DATE_FORMAT)
             .create()
 
     fun createService(baseUrl: String): RandomPictureService =
