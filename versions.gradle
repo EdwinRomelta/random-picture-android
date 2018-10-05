@@ -1,8 +1,8 @@
 ext.deps = [:]
 def versions = [:]
 versions.anko = "0.10.5"
-versions.kotlin = "1.2.50"
-versions.android_gradle_plugin = "3.3.0-alpha03"
+versions.kotlin = "1.2.51"
+versions.android_gradle_plugin = "3.2.0"
 versions.support = "27.1.1"
 versions.atsl_runner = "1.0.2"
 versions.espresso = "3.0.2"
@@ -123,7 +123,7 @@ ext.deps = deps
 def build_versions = [:]
 build_versions.min_sdk = 15
 build_versions.target_sdk = 27
-build_versions.build_tools = "28.0.1"
+build_versions.build_tools = "28.0.2"
 ext.build_versions = build_versions
 
 def addRepos(RepositoryHandler handler) {

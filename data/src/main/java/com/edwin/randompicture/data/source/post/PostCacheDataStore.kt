@@ -1,22 +1,22 @@
 package com.edwin.randompicture.data.source.post
 
 import com.edwin.randompicture.data.model.PostEntity
+import com.edwin.randompicture.data.repository.post.PostCache
 import com.edwin.randompicture.data.repository.post.PostDataStore
-import com.edwin.randompicture.data.repository.post.PostRemote
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class PostRemoteDataStore @Inject constructor(
-        private val postRemote: PostRemote) : PostDataStore {
+class PostCacheDataStore @Inject constructor(
+        private val postCache: PostCache) : PostDataStore {
 
     override fun getPost(): Flowable<List<PostEntity>> =
-            postRemote.getPost().toFlowable()
+            postCache.getPost()
 
     override fun savePost(postEntity: List<PostEntity>): Completable =
-            throw UnsupportedOperationException()
+            postCache.savePost(postEntity)
 
     override fun publishPost(postEntity: PostEntity): Single<PostEntity> =
-            postRemote.publishPost(postEntity)
+            throw UnsupportedOperationException()
 }

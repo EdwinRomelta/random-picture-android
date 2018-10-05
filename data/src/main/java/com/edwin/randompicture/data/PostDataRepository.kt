@@ -13,6 +13,10 @@ class PostDataRepository @Inject constructor(private val factory: PostDataStoreF
 
     override fun getPosts(): Flowable<List<Post>> =
             factory.retrieveRemoteDataStore().getPost()
+                    .switchMap {
+                        factory.retrieveCacheDataStore().savePost(it)
+                                .andThen(factory.retrieveCacheDataStore().getPost())
+                    }
                     .map { postEntityList ->
                         postEntityList.map { postMapper.mapFromEntity(it) }
                     }
