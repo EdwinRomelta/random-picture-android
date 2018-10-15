@@ -59,6 +59,9 @@ dependencies {
     implementation deps.glide.runtime
     kapt deps.glide.compiler
 
+    implementation deps.paging.runtime
+    implementation deps.paging.rxjava2
+
     implementation deps.rxjava2
     implementation deps.rxbinding.rx_binding
     implementation deps.rxbinding.design

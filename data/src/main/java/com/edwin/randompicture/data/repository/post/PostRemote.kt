@@ -7,5 +7,10 @@ interface PostRemote {
 
     fun getPost(): Single<List<PostEntity>>
 
+    fun getPostWithLimit(limit: Int): Single<List<PostEntity>>
+
+    fun getPostsFromId(startId: String, limit: Int): Single<List<PostEntity>>
+
     fun publishPost(postEntity: PostEntity): Single<PostEntity>
+
 }

@@ -13,4 +13,5 @@ data class CachedPost(
         val id: String,
         val imgPath: String,
         val text: String,
+        @ColumnInfo(name = CachedPostDao.FIELD_TIMESTAMP)
         val timeStamp: Date)

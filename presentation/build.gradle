@@ -17,6 +17,9 @@ dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.lifecycle.extensions
 
+    implementation deps.paging.runtime
+    implementation deps.paging.rxjava2
+
     implementation deps.rxjava2
     implementation deps.dagger.runtime
     implementation deps.dagger.android

@@ -1,11 +1,13 @@
 package com.edwin.randompicture.cache
 
+import android.arch.paging.DataSource
 import com.edwin.randompicture.cache.db.RandomPictureDatabase
 import com.edwin.randompicture.cache.mapper.PostEntityMapper
 import com.edwin.randompicture.data.model.PostEntity
 import com.edwin.randompicture.data.repository.post.PostCache
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class PostCacheImpl @Inject constructor(
@@ -30,4 +32,8 @@ class PostCacheImpl @Inject constructor(
                     .map { cachedPosts ->
                         cachedPosts.map { postEntityMapper.mapFromCached(it) }
                     }
+
+    override fun getPostDataSource(): Single<DataSource.Factory<Int, PostEntity>> =
+            Single.just(cachedPostDao.getPostDataSource()
+                    .map { postEntityMapper.mapFromCached(it) })
 }

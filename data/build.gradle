@@ -1,13 +1,24 @@
-apply plugin: 'kotlin'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+android {
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+    }
+}
 
 dependencies {
     implementation project(':domain')
 
     implementation deps.kotlin.stdlib
     implementation deps.rxjava2
+
+    implementation deps.paging.runtime
+    implementation deps.paging.rxjava2
 
     implementation deps.dagger.runtime
 

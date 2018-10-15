@@ -26,6 +26,9 @@ dependencies {
 
     implementation deps.dagger.runtime
 
+    implementation deps.paging.runtime
+    implementation deps.paging.rxjava2
+
     implementation deps.room.runtime
     implementation deps.room.rxjava2
     kapt deps.room.compiler

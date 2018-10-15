@@ -8,6 +8,7 @@ class PostMapper @Inject constructor() : Mapper<PostView, Post> {
 
     override fun mapToView(type: Post) =
             PostView(
+                    id = type.id,
                     imgPath = type.imgPath,
                     text = type.text,
                     timeStamp = type.timeStamp)

@@ -23,4 +23,5 @@ class PendingPostCacheImpl @Inject constructor(
     override fun getPendingPostById(id: Long): Flowable<PendingPostEntity> =
             cachedPendingPostDao.getPendingPostById(id)
                     .map { pendingPostEntityMapper.mapFromCached(it) }
+                    .distinctUntilChanged()
 }

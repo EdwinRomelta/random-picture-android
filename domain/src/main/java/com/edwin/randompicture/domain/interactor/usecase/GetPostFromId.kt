@@ -8,7 +8,7 @@ import com.edwin.randompicture.domain.repository.PostRepository
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-class GetPost @Inject constructor(
+class GetPostFromId @Inject constructor(
         private val postRepository: PostRepository,
         threadExecutor: ThreadExecutor,
         postExecutionThread: PostExecutionThread) :
@@ -16,5 +16,6 @@ class GetPost @Inject constructor(
 
     override fun buildUseCaseObservable(params: Void?): Flowable<List<Post>> =
             postRepository.getPosts()
+
 
 }

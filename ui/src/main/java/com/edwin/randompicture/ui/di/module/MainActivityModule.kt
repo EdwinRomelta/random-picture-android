@@ -1,7 +1,8 @@
 package com.edwin.randompicture.ui.di.module
 
 import android.support.v4.app.Fragment
-import com.edwin.randompicture.domain.interactor.usecase.GetPost
+import com.edwin.randompicture.domain.interactor.usecase.GetAndSavePost
+import com.edwin.randompicture.domain.interactor.usecase.GetPostDataSource
 import com.edwin.randompicture.presentation.mapper.PostMapper
 import com.edwin.randompicture.presentation.viewmodel.post.PostViewModelFactory
 import com.edwin.randompicture.ui.di.scope.PerFragment
@@ -13,8 +14,8 @@ import dagger.android.ContributesAndroidInjector
 @Module(includes = [(MainFragmentBuildersModule::class)])
 class MainActivityModule {
 
-    fun providePostViewModelFactory(getPost: GetPost, postMapper: PostMapper) =
-            PostViewModelFactory(getPost, postMapper)
+    fun providePostViewModelFactory(getAndSavePost: GetAndSavePost, getPostDataSource: GetPostDataSource, postMapper: PostMapper) =
+            PostViewModelFactory(getAndSavePost, getPostDataSource, postMapper)
 }
 
 @Module

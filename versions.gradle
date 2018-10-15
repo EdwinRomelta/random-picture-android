@@ -19,6 +19,7 @@ versions.rx_android = "2.1.0"
 versions.rx_binding = "2.1.1"
 versions.rxpermissions = "0.10.2"
 versions.paperparcel = "2.0.6"
+versions.paging = "1.0.0"
 versions.glide = "4.8.0"
 versions.room = "1.1.1"
 versions.work = "1.0.0-alpha09"
@@ -46,6 +47,12 @@ deps.support = support
 def lifecycle = [:]
 lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.lifecycle"
 deps.lifecycle = lifecycle
+
+def paging = [:]
+paging.runtime = "android.arch.paging:runtime:$versions.paging"
+paging.rxjava2 = "android.arch.paging:rxjava2:1.0.0-rc1"
+deps.paging = paging
+
 
 def room = [:]
 room.runtime = "android.arch.persistence.room:runtime:$versions.room"

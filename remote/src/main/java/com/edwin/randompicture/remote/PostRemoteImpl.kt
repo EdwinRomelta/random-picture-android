@@ -21,6 +21,18 @@ class PostRemoteImpl @Inject constructor(private val randomPictureService: Rando
                         postModelList.map { postMapper.mapFromRemote(it) }
                     }
 
+    override fun getPostWithLimit(limit: Int): Single<List<PostEntity>> =
+            randomPictureService.getPostsWithLimit(limit)
+                    .map { postModelList ->
+                        postModelList.map { postMapper.mapFromRemote(it) }
+                    }
+
+    override fun getPostsFromId(startId: String, limit: Int): Single<List<PostEntity>> =
+            randomPictureService.getPostsStartFrom(startId, limit)
+                    .map { postModelList ->
+                        postModelList.map { postMapper.mapFromRemote(it) }
+                    }
+
     override fun publishPost(postEntity: PostEntity): Single<PostEntity> {
         val uploadFile = File(postEntity.imgPath)
         val requestFile = RequestBody.create(MediaType.parse("image/jpeg"), uploadFile)
