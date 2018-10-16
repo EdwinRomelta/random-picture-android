@@ -26,9 +26,15 @@ class PostDataRepository @Inject constructor(private val factory: PostDataStoreF
     override fun getPostsByParam(param: GetAndSavePost.GetPostParam) =
             factory.retrieveRemoteDataStore().getPostsByParam(param)
                     .flatMap {
-                        factory.retrieveCacheDataStore().savePost(it)
-                                .toSingle { it }
-                                .toFlowable()
+                        if (param.postId == null) {
+                            factory.retrieveCacheDataStore().clearSavePost(it)
+                                    .toSingle { it }
+                                    .toFlowable()
+                        } else {
+                            factory.retrieveCacheDataStore().savePost(it)
+                                    .toSingle { it }
+                                    .toFlowable()
+                        }
                     }
                     .map { postEntityList ->
                         postEntityList.map { postMapper.mapFromEntity(it) }

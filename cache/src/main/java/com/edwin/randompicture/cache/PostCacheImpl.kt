@@ -33,6 +33,12 @@ class PostCacheImpl @Inject constructor(
                         cachedPosts.map { postEntityMapper.mapFromCached(it) }
                     }
 
+    override fun clearSavePost(postEntity: List<PostEntity>): Completable =
+            Completable.fromCallable {
+                val cachePosts = postEntity.map { postEntityMapper.mapToCached(it) }
+                cachedPostDao.clearSavePosts(cachePosts)
+            }
+
     override fun getPostDataSource(): Single<DataSource.Factory<Int, PostEntity>> =
             Single.just(cachedPostDao.getPostDataSource()
                     .map { postEntityMapper.mapFromCached(it) })

@@ -12,5 +12,7 @@ interface PostCache {
 
     fun getPostDataSource(): Single<DataSource.Factory<Int, PostEntity>>
 
+    fun clearSavePost(postEntity: List<PostEntity>): Completable
+
     fun savePost(postEntity: List<PostEntity>): Completable
 }

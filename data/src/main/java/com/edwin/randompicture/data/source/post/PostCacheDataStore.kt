@@ -22,6 +22,9 @@ class PostCacheDataStore @Inject constructor(
     override fun getPost(): Flowable<List<PostEntity>> =
             postCache.getPost()
 
+    override fun clearSavePost(postEntity: List<PostEntity>): Completable =
+            postCache.clearSavePost(postEntity)
+
     override fun savePost(postEntity: List<PostEntity>): Completable =
             postCache.savePost(postEntity)
 

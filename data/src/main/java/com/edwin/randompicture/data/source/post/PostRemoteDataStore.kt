@@ -34,6 +34,9 @@ class PostRemoteDataStore @Inject constructor(
     override fun savePost(postEntity: List<PostEntity>): Completable =
             throw UnsupportedOperationException()
 
+    override fun clearSavePost(postEntity: List<PostEntity>): Completable =
+            throw UnsupportedOperationException()
+
     override fun publishPost(postEntity: PostEntity): Single<PostEntity> =
             postRemote.publishPost(postEntity)
 }

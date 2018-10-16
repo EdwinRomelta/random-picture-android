@@ -1,10 +1,7 @@
 package com.edwin.randompicture.cache.dao
 
 import android.arch.paging.DataSource
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import com.edwin.randompicture.cache.model.CachedPost
 import io.reactivex.Flowable
 
@@ -16,6 +13,12 @@ interface CachedPostDao {
         const val TABLE_NAME = "post"
         const val FIELD_ID = "id"
         const val FIELD_TIMESTAMP = "timeStamp"
+    }
+
+    @Transaction
+    fun clearSavePosts(posts: List<CachedPost>) {
+        deleteAllUsers()
+        insertPosts(posts)
     }
 
     @Query("Select * FROM $TABLE_NAME")
@@ -33,4 +36,6 @@ interface CachedPostDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPosts(posts: List<CachedPost>)
 
+    @Query("DELETE FROM $TABLE_NAME")
+    fun deleteAllUsers()
 }

@@ -23,31 +23,30 @@ class PostsViewModel @Inject constructor(private val getAndSavePost: GetAndSaveP
                                          private val postMapper: PostMapper) : BaseViewModel() {
 
     companion object {
-        private const val NETWORK_PAGE_SIZE = 2
+        private const val NETWORK_PAGE_SIZE = 3
     }
 
     private val listing = MutableLiveData<Listing<PostView>>()
     val posts: LiveData<PagedList<PostView>> = switchMap(listing) { it.pagedList }
-    val networkState = switchMap(listing) { it.networkState }
-    val refreshState = switchMap(listing) { it.refreshState }
+    val networkState: LiveData<NetworkState> = switchMap(listing) { it.networkState }
+    val refreshState: LiveData<NetworkState> = switchMap(listing) { it.refreshState }
 
     init {
         val boundaryCallback = PostBoundaryCallback()
         val refreshTrigger = MutableLiveData<Unit>()
         val refreshState = Transformations.switchMap(refreshTrigger) {
-            refresh()
+            doRefresh()
         }
 
         val livePagedList = LivePagedListBuilder(
                 getPostDataSource.executeSync(Unit).map { postMapper.mapToView(it) },
                 PagedList.Config.Builder()
                         .setPageSize(NETWORK_PAGE_SIZE)
-                        .setEnablePlaceholders(false)
                         .build())
                 .setBoundaryCallback(boundaryCallback)
                 .build()
 
-        listing.postValue(Listing(
+        listing.value = Listing(
                 pagedList = livePagedList,
                 networkState = boundaryCallback.networkState,
                 retry = {
@@ -57,7 +56,8 @@ class PostsViewModel @Inject constructor(private val getAndSavePost: GetAndSaveP
                     refreshTrigger.value = null
                 },
                 refreshState = refreshState
-        ))
+        )
+        refresh()
     }
 
     override fun onCleared() {
@@ -65,15 +65,18 @@ class PostsViewModel @Inject constructor(private val getAndSavePost: GetAndSaveP
         getPostDataSource.dispose()
     }
 
-    init {
-        refresh()
+    fun refresh() {
+        listing.value?.refresh?.invoke()
     }
 
-    private fun refresh(): LiveData<NetworkState> {
+    private fun doRefresh(): LiveData<NetworkState> {
         val networkState = MutableLiveData<NetworkState>()
         networkState.value = NetworkState.LOADING
         compositeDisposable.add(getAndSavePost.execute(getAndSavePost.GetPostParam(NETWORK_PAGE_SIZE))
-                .subscribe({ networkState.postValue(NetworkState.LOADED) }
+                .subscribe(
+                        {
+                            networkState.postValue(NetworkState.LOADED)
+                        }
                         , { networkState.value = NetworkState.error(it.message) }
                 ))
         return networkState

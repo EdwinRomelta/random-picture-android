@@ -5,13 +5,13 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.MainFragmentBinding
+import com.edwin.randompicture.presentation.data.NetworkState
 import com.edwin.randompicture.presentation.viewmodel.post.PostViewModelFactory
 import com.edwin.randompicture.presentation.viewmodel.post.PostsViewModel
 import com.edwin.randompicture.ui.base.BaseFragment
@@ -19,6 +19,8 @@ import com.edwin.randompicture.ui.di.Injectable
 import com.edwin.randompicture.ui.screen.main.adapter.PostAdapter
 import com.edwin.randompicture.ui.util.autoCleared
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.main_fragment.*
+import org.jetbrains.anko.support.v4.onRefresh
 import javax.inject.Inject
 
 class MainFragment : BaseFragment(), Injectable {
@@ -56,6 +58,9 @@ class MainFragment : BaseFragment(), Injectable {
         binding.postRecycleView.apply {
             layoutManager = LinearLayoutManager(this@MainFragment.context)
             adapter = postAdapter
+            swipeRefreshLayout.onRefresh {
+                postsViewModel.refresh()
+            }
         }
     }
 
@@ -63,36 +68,14 @@ class MainFragment : BaseFragment(), Injectable {
         super.onStart(onStartDisposable)
         postsViewModel.posts.observe(this, Observer {
             binding.apply {
-                Log.d("EDWIN", "List size ${it?.size ?: 0}")
-                postRecycleView.visibility = View.VISIBLE
-                if (0 == it?.size ?: 0) {
-                    loadingProgressBar.visibility = View.VISIBLE
-                } else {
-                    loadingProgressBar.visibility = View.GONE
-                }
                 postAdapter.submitList(it)
             }
-//                when (it?.status) {
-//                    ResourceState.LOADING -> {
-//                        loadingProgressBar.visibility = View.VISIBLE
-//                        postRecycleView.visibility = View.GONE
-//                    }
-//                    ResourceState.SUCCESS -> {
-//                        loadingProgressBar.visibility = View.GONE
-//                        it.data?.let { postViewList ->
-//                            postAdapter.posts = postViewList.map { postView ->
-//                                postMapper.mapToViewModel(postView)
-//                            }
-//                            postAdapter.notifyDataSetChanged()
-//                        }
-//                        postRecycleView.visibility = View.VISIBLE
-//                    }
-//                    ResourceState.ERROR -> {
-//                        loadingProgressBar.visibility = View.GONE
-//                        postRecycleView.visibility = View.VISIBLE
-//                    }
-//                }
-//            }
+            postsViewModel.networkState.observe(this, Observer { networkState ->
+                postAdapter.setNetworkState(networkState)
+            })
+            postsViewModel.refreshState.observe(this, Observer { networkState ->
+                swipeRefreshLayout.isRefreshing = networkState == NetworkState.LOADING
+            })
         })
     }
 }

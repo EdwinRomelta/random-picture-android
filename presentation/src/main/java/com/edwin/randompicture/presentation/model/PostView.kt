@@ -2,7 +2,7 @@ package com.edwin.randompicture.presentation.model
 
 import java.util.*
 
-class PostView(
+data class PostView(
         val id: String,
         val imgPath: String,
         val text: String,

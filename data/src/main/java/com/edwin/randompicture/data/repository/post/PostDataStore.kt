@@ -17,6 +17,8 @@ interface PostDataStore {
 
     fun publishPost(postEntity: PostEntity): Single<PostEntity>
 
+    fun clearSavePost(postEntity: List<PostEntity>): Completable
+
     fun savePost(postEntity: List<PostEntity>): Completable
 
 }
