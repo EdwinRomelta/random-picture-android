@@ -11,7 +11,7 @@ import com.edwin.randompicture.cache.db.converter.DateConverter
 import com.edwin.randompicture.cache.model.CachedPendingPost
 import com.edwin.randompicture.cache.model.CachedPost
 
-private const val DATABASE_VERSION = 2
+private const val DATABASE_VERSION = 3
 
 @Database(entities = [
     CachedPendingPost::class,
@@ -25,7 +25,9 @@ abstract class RandomPictureDatabase : RoomDatabase() {
 
         fun initialize(application: Application) =
                 Room.databaseBuilder(application, RandomPictureDatabase::class.java, DATABASE_NAME)
-                        .addMigrations(MigrationV2)
+                        .addMigrations(
+                                MigrationV2,
+                                MigrationV3)
                         .build()
     }
 

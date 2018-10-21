@@ -31,7 +31,7 @@ class PostRemoteDataStore @Inject constructor(
     override fun getPostDataSource(): Single<DataSource.Factory<Int, PostEntity>> =
             throw UnsupportedOperationException()
 
-    override fun savePost(postEntity: List<PostEntity>): Completable =
+    override fun savePosts(postEntity: List<PostEntity>): Completable =
             throw UnsupportedOperationException()
 
     override fun clearSavePost(postEntity: List<PostEntity>): Completable =
@@ -39,4 +39,7 @@ class PostRemoteDataStore @Inject constructor(
 
     override fun publishPost(postEntity: PostEntity): Single<PostEntity> =
             postRemote.publishPost(postEntity)
+
+    override fun savePost(postEntity: PostEntity): Completable =
+            throw UnsupportedOperationException()
 }

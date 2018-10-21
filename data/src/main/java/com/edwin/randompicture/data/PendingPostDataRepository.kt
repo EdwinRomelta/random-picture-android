@@ -1,9 +1,11 @@
 package com.edwin.randompicture.data
 
+import android.arch.paging.DataSource
 import com.edwin.randompicture.data.mapper.PendingPostMapper
 import com.edwin.randompicture.data.source.pendingpost.PendingPostDataStoreFactory
 import com.edwin.randompicture.domain.model.PendingPost
 import com.edwin.randompicture.domain.repository.PendingPostRepository
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -18,8 +20,19 @@ class PendingPostDataRepository @Inject constructor(
                 .savePendingPost(pendingPostMapper.mapToEntity(pendingPost))
     }
 
+    override fun getPendingPostDataSource(): Single<DataSource.Factory<Int, PendingPost>> {
+        return factory.retrieveCacheDataStore().getPendingPostDataSource()
+                .map { datasource ->
+                    datasource.map { pendingPostMapper.mapFromEntity(it) }
+                }
+    }
+
     override fun getPendingPostById(id: Long): Flowable<PendingPost> {
         return factory.retrieveCacheDataStore().getPendingPostById(id)
                 .map { pendingPostMapper.mapFromEntity(it) }
+    }
+
+    override fun deletePendingPost(pendingPost: PendingPost): Completable {
+        return factory.retrieveCacheDataStore().deletePendingPost(pendingPostMapper.mapToEntity(pendingPost))
     }
 }

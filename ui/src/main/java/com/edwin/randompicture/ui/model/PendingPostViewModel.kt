@@ -1,6 +1,6 @@
-package com.edwin.randompicture.presentation.model
+package com.edwin.randompicture.ui.model
 
-data class PendingPostView(
+class PendingPostViewModel(
         val id: Long,
         val imagePath: String,
         val caption: String,

@@ -25,8 +25,12 @@ class PostCacheDataStore @Inject constructor(
     override fun clearSavePost(postEntity: List<PostEntity>): Completable =
             postCache.clearSavePost(postEntity)
 
-    override fun savePost(postEntity: List<PostEntity>): Completable =
+    override fun savePost(postEntity: PostEntity): Completable =
             postCache.savePost(postEntity)
+
+
+    override fun savePosts(postEntity: List<PostEntity>): Completable =
+            postCache.savePosts(postEntity)
 
     override fun publishPost(postEntity: PostEntity): Single<PostEntity> =
             throw UnsupportedOperationException()

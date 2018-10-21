@@ -4,6 +4,7 @@ import com.edwin.randompicture.domain.executor.PostExecutionThread
 import com.edwin.randompicture.domain.executor.ThreadExecutor
 import com.edwin.randompicture.domain.interactor.SingleUseCase
 import com.edwin.randompicture.domain.model.POST_PUBLISH_ID
+import com.edwin.randompicture.domain.model.PendingPost
 import com.edwin.randompicture.domain.model.Post
 import com.edwin.randompicture.domain.repository.PendingPostRepository
 import com.edwin.randompicture.domain.repository.PostRepository
@@ -19,13 +20,25 @@ class UploadPendingPost @Inject constructor(
 
     override fun buildUseCaseObservable(params: Long): Single<Post> =
             pendingPostRepository.getPendingPostById(params)
-                    .map {
-                        Post(id = POST_PUBLISH_ID,
-                                imgPath = it.imagePath,
-                                timeStamp = it.createdDate,
-                                text = it.caption)
+                    .flatMapSingle { pendingPost ->
+                        val uploadPendingPost = pendingPost.copy(status = PendingPost.STATUS_UPLOADING)
+                        pendingPostRepository.savePendingPost(uploadPendingPost).map { uploadPendingPost }
                     }
-                    .flatMapSingle { postRepository.publishPost(it) }
+                    .flatMapSingle { pendingPost ->
+                        val uploadPost = Post(id = POST_PUBLISH_ID,
+                                imgPath = pendingPost.imagePath,
+                                timeStamp = pendingPost.createdDate,
+                                text = pendingPost.caption)
+                        postRepository.publishPost(uploadPost)
+                                .flatMap { uploadedPost ->
+                                    pendingPostRepository.deletePendingPost(pendingPost).toSingle { uploadedPost }
+                                }
+                                .onErrorResumeNext {
+                                    val uploadPendingPost = pendingPost.copy(status = PendingPost.STATUS_FAILED)
+                                    pendingPostRepository.savePendingPost(uploadPendingPost)
+                                    Single.error(it)
+                                }
+                    }
                     .singleOrError()
 
 }

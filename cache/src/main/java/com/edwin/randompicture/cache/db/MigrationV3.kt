@@ -3,10 +3,10 @@ package com.edwin.randompicture.cache.db
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.migration.Migration
 
-object MigrationV2 : Migration(1, 2) {
+object MigrationV3 : Migration(2, 3) {
 
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("CREATE TABLE IF NOT EXISTS `post` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `imagePath` TEXT NOT NULL, `caption` TEXT NOT NULL, `createdDate` INTEGER NOT NULL)")
+        database.execSQL("ALTER TABLE pending_post ADD status INTEGER NOT NULL DEFAULT 0;")
     }
 
 }

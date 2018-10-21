@@ -16,7 +16,7 @@ class PostDataRepository @Inject constructor(private val factory: PostDataStoreF
     override fun getPosts(): Flowable<List<Post>> =
             factory.retrieveRemoteDataStore().getPost()
                     .switchMap {
-                        factory.retrieveCacheDataStore().savePost(it)
+                        factory.retrieveCacheDataStore().savePosts(it)
                                 .andThen(factory.retrieveCacheDataStore().getPost())
                     }
                     .map { postEntityList ->
@@ -31,7 +31,7 @@ class PostDataRepository @Inject constructor(private val factory: PostDataStoreF
                                     .toSingle { it }
                                     .toFlowable()
                         } else {
-                            factory.retrieveCacheDataStore().savePost(it)
+                            factory.retrieveCacheDataStore().savePosts(it)
                                     .toSingle { it }
                                     .toFlowable()
                         }
@@ -46,6 +46,7 @@ class PostDataRepository @Inject constructor(private val factory: PostDataStoreF
 
     override fun publishPost(post: Post): Single<Post> =
             factory.retrieveRemoteDataStore().publishPost(postMapper.mapToEntity(post))
+                    .flatMap { factory.retrieveCacheDataStore().savePost(it).toSingle { it } }
                     .map { postMapper.mapFromEntity(it) }
 
 }

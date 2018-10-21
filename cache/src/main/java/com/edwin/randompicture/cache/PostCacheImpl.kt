@@ -16,7 +16,12 @@ class PostCacheImpl @Inject constructor(
 
     private val cachedPostDao = randomPictureDatabase.cachedPostDao()
 
-    override fun savePost(postEntity: List<PostEntity>): Completable =
+    override fun savePost(postEntity: PostEntity): Completable =
+            Completable.fromCallable {
+                cachedPostDao.insertPost(postEntityMapper.mapToCached(postEntity))
+            }
+
+    override fun savePosts(postEntity: List<PostEntity>): Completable =
             Completable.defer {
                 val cachePosts = postEntity.map { postEntityMapper.mapToCached(it) }
                 try {

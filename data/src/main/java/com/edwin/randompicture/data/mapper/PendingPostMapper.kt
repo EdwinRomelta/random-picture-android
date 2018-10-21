@@ -6,7 +6,17 @@ import javax.inject.Inject
 
 class PendingPostMapper @Inject constructor() : Mapper<PendingPostEntity, PendingPost> {
 
-    override fun mapFromEntity(type: PendingPostEntity) = PendingPost(type.imagePath, type.caption, type.createdDate)
+    override fun mapFromEntity(type: PendingPostEntity) = PendingPost(
+            id = type.id,
+            imagePath = type.imagePath,
+            caption = type.caption,
+            createdDate = type.createdDate,
+            status = type.status)
 
-    override fun mapToEntity(type: PendingPost) = PendingPostEntity(type.imagePath, type.caption, type.createdDate)
+    override fun mapToEntity(type: PendingPost) = PendingPostEntity(
+            id = type.id,
+            imagePath = type.imagePath,
+            caption = type.caption,
+            createdDate = type.createdDate,
+            status = type.status)
 }

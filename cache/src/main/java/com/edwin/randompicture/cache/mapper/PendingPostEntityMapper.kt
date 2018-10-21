@@ -8,9 +8,18 @@ import javax.inject.Inject
 class PendingPostEntityMapper @Inject constructor() : EntityMapper<CachedPendingPost, PendingPostEntity> {
 
     override fun mapFromCached(type: CachedPendingPost) =
-            PendingPostEntity(type.imagePath, type.caption, Date(type.createdDate))
+            PendingPostEntity(
+                    id = type.id,
+                    imagePath = type.imagePath,
+                    caption = type.caption,
+                    createdDate = Date(type.createdDate),
+                    status = type.status)
 
     override fun mapToCached(type: PendingPostEntity) =
-            CachedPendingPost(null, type.imagePath, type.caption, type.createdDate.time)
+            CachedPendingPost(id = type.id,
+                    imagePath = type.imagePath,
+                    caption = type.caption,
+                    createdDate = type.createdDate.time,
+                    status = type.status)
 
 }

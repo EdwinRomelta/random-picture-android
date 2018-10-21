@@ -87,5 +87,6 @@ class PostAdapter @Inject constructor(private val fragmentDataBindingComponent: 
         }
     }
 
-    private fun hasExtraRow() = networkState != null && networkState != NetworkState.LOADED
+    private fun hasExtraRow() = networkState != null && networkState != NetworkState.LOADED &&
+            (super.getItemCount() > 0)
 }
