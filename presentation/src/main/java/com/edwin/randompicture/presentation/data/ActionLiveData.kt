@@ -13,8 +13,6 @@ class ActionLiveData<T> : MutableLiveData<T>() {
         if (hasObservers()) {
             throw RuntimeException("Only one observer at a time may subscribe to a ActionLiveData")
         }
-        super.observe(owner, observer)
-
         super.observe(owner, Observer { data ->
             if (data == null) return@Observer
             observer.onChanged(data)

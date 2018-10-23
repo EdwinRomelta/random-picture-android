@@ -1,7 +1,6 @@
 package com.edwin.randompicture.ui.screen.capture.fragment
 
 import android.Manifest
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -15,10 +14,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.CaptureFragmentBinding
-import com.edwin.randompicture.presentation.data.Resource
 import com.edwin.randompicture.presentation.data.ResourceState
 import com.edwin.randompicture.presentation.data.error.show
-import com.edwin.randompicture.presentation.model.PhotoView
 import com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModel
 import com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModelFactory
 import com.edwin.randompicture.ui.base.BaseFragment
@@ -44,7 +41,6 @@ class CaptureFragment : BaseFragment(), Injectable {
     private lateinit var photoViewModel: PhotoViewModel
 
     var binding by autoCleared<CaptureFragmentBinding>()
-    private var captureLiveData: LiveData<Resource<PhotoView>>? = null
 
     override fun onCreateView(onCreateDisposable: CompositeDisposable,
                               inflater: LayoutInflater,
@@ -54,31 +50,8 @@ class CaptureFragment : BaseFragment(), Injectable {
         binding = databinding
         onCreateDisposable.add(binding.captureButton.clicks()
                 .subscribe {
-                    binding.cameraView.captureImage {
-                        captureLiveData = photoViewModel.createPhoto(it.jpeg)
-                        captureLiveData?.let { captureLiveData ->
-                            if (captureLiveData.hasActiveObservers())
-                                captureLiveData.removeObservers(this)
-                            captureLiveData.observe(this, Observer {
-                                when (it?.status) {
-                                    ResourceState.SUCCESS -> {
-                                        val filePath = it.data?.filePath
-                                        if (filePath != null) {
-                                            val naviDirection = CaptureFragmentDirections.actionCaptureFragmentToPublishFragment(filePath.toString())
-                                            findNavController().navigate(naviDirection)
-                                        }
-                                    }
-                                    ResourceState.LOADING -> {
-                                        binding.cameraView.stop()
-                                    }
-                                    ResourceState.ERROR -> {
-                                        binding.cameraView.start()
-                                        context?.apply { it.errorResource?.show(this) }
-                                    }
-                                }
-                            })
-                        }
-
+                    binding.cameraView.captureImage { cameraKitImage ->
+                        photoViewModel.createPhoto(cameraKitImage.jpeg)
                     }
                 }
         )
@@ -109,12 +82,12 @@ class CaptureFragment : BaseFragment(), Injectable {
                         else -> {
                             alert(R.string.capturescreen_permissiondeny, R.string.all_appname) {
                                 positiveButton(R.string.permissionalert_opensetting) {
-                                    context?.let {
+                                    context?.let { context ->
                                         val intent = Intent()
                                         intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                                        val uri = Uri.fromParts("package", it.packageName, null)
+                                        val uri = Uri.fromParts("package", context.packageName, null)
                                         intent.data = uri
-                                        if (intent.resolveActivity(it.packageManager) != null) {
+                                        if (intent.resolveActivity(context.packageManager) != null) {
                                             startActivity(intent)
                                         } else {
                                             toast(R.string.permissiondialog_nosettingintent)
@@ -126,18 +99,29 @@ class CaptureFragment : BaseFragment(), Injectable {
                     }
                 }
         )
-    }
 
-    override fun onPause() {
-        captureLiveData?.let {
-            if (it.hasActiveObservers()) {
-                it.removeObservers(this)
+        photoViewModel.photo.observe(this, Observer {
+            when (it?.status) {
+                ResourceState.SUCCESS -> {
+                    val filePath = it.data?.filePath
+                    if (filePath != null) {
+                        val naviDirection = CaptureFragmentDirections.actionCaptureFragmentToPublishFragment(filePath.toString())
+                        findNavController().navigate(naviDirection)
+                    }
+                }
+                ResourceState.LOADING -> {
+                    binding.cameraView.stop()
+                }
+                ResourceState.ERROR -> {
+                    binding.cameraView.start()
+                    context?.apply { it.errorResource?.show(this) }
+                }
             }
-        }
-        super.onPause()
+        })
     }
 
     override fun onStop() {
+        photoViewModel.photo.removeObservers(this)
         binding.cameraView.stop()
         super.onStop()
     }

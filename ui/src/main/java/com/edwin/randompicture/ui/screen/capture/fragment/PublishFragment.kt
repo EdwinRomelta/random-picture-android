@@ -95,4 +95,9 @@ class PublishFragment : BaseFragment(), Injectable {
         })
     }
 
+    override fun onStop() {
+        super.onStop()
+        pendingPostViewModel.uploadPendingPost.removeObservers(this)
+    }
+
 }
