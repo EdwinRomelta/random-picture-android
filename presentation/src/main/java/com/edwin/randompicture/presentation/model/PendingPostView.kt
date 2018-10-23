@@ -1,7 +1,7 @@
 package com.edwin.randompicture.presentation.model
 
 data class PendingPostView(
-        val id: Long,
+        val id: Long? = null,
         val imagePath: String,
-        val caption: String,
-        val status: Int)
+        val caption: String? = null,
+        val status: Int? = null)

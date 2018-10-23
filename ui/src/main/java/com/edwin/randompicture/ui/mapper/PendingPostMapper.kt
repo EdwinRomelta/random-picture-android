@@ -8,8 +8,8 @@ class PendingPostMapper @Inject constructor() : Mapper<PendingPostViewModel, Pen
 
     override fun mapToViewModel(type: PendingPostView): PendingPostViewModel =
             PendingPostViewModel(
-                    id = type.id,
+                    id = type.id!!,
                     imagePath = type.imagePath,
-                    caption = type.caption,
-                    status = type.status)
+                    caption = type.caption!!,
+                    status = type.status!!)
 }

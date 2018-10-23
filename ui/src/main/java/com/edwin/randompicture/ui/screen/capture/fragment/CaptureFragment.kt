@@ -17,6 +17,7 @@ import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.CaptureFragmentBinding
 import com.edwin.randompicture.presentation.data.Resource
 import com.edwin.randompicture.presentation.data.ResourceState
+import com.edwin.randompicture.presentation.data.error.show
 import com.edwin.randompicture.presentation.model.PhotoView
 import com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModel
 import com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModelFactory
@@ -72,7 +73,7 @@ class CaptureFragment : BaseFragment(), Injectable {
                                     }
                                     ResourceState.ERROR -> {
                                         binding.cameraView.start()
-                                        it.message?.let { toast(it) }
+                                        context?.apply { it.errorResource?.show(this) }
                                     }
                                 }
                             })

@@ -7,6 +7,9 @@ import com.edwin.randompicture.domain.interactor.usecase.SavePendingPost
 import com.edwin.randompicture.domain.model.PendingPost
 import com.edwin.randompicture.presentation.R
 import com.edwin.randompicture.presentation.data.Resource
+import com.edwin.randompicture.presentation.data.error.ToastErrorResource
+import com.edwin.randompicture.presentation.data.error.ValidationErrorResource
+import com.edwin.randompicture.presentation.model.PendingPostView
 import com.edwin.randompicture.presentation.viewmodel.BaseViewModel
 import com.edwin.randompicture.presentation.work.UploadWorker
 import io.reactivex.observers.DisposableSingleObserver
@@ -16,11 +19,27 @@ import javax.inject.Inject
 class PendingPostViewModel @Inject constructor(
         private val savePendingPost: SavePendingPost) : BaseViewModel() {
 
-    fun createPendingPost(imagePath: String, caption: String): LiveData<Resource<Unit>> {
-        val liveData = MutableLiveData<Resource<Unit>>()
-        liveData.postValue(Resource.loading())
-        savePendingPost.execute(PendingPostSubscriber(liveData), PendingPost(Uri.parse(imagePath).path, caption, Date()))
-        return liveData
+    companion object {
+        const val EMPTY_CAPTION = 10001
+    }
+
+    private val pendingPostLiveData = MutableLiveData<PendingPostView>()
+    val pendingPost: LiveData<PendingPostView> = pendingPostLiveData
+
+    private val uploadPendingPostLiveData = MutableLiveData<Resource<Unit>>()
+    val uploadPendingPost: LiveData<Resource<Unit>> = uploadPendingPostLiveData
+
+    fun submitPendingPost(imagePath: String, caption: String?) {
+        if (caption == null || caption.isEmpty()) {
+            uploadPendingPostLiveData.postValue(Resource.error(ValidationErrorResource(EMPTY_CAPTION)))
+            return
+        }
+        savePendingPost.execute(PendingPostSubscriber(),
+                PendingPost(Uri.parse(imagePath).path, caption, Date()))
+    }
+
+    fun createPendingPost(imagePath: String) {
+        pendingPostLiveData.postValue(PendingPostView(imagePath = imagePath))
     }
 
     override fun onCleared() {
@@ -28,14 +47,14 @@ class PendingPostViewModel @Inject constructor(
         savePendingPost.dispose()
     }
 
-    inner class PendingPostSubscriber(private val liveData: MutableLiveData<Resource<Unit>>) : DisposableSingleObserver<Long>() {
+    inner class PendingPostSubscriber : DisposableSingleObserver<Long>() {
         override fun onSuccess(id: Long) {
             id.let { UploadWorker.createWorker(it) }
-            liveData.postValue(Resource.success(Unit))
+            uploadPendingPostLiveData.postValue(Resource.success(Unit))
         }
 
         override fun onError(exception: Throwable) {
-            liveData.postValue(Resource.error(R.string.capture_errorprocessingimage))
+            uploadPendingPostLiveData.postValue(Resource.error(ToastErrorResource(R.string.capture_errorprocessingimage)))
         }
     }
 }
