@@ -3,7 +3,7 @@ package com.edwin.randompicture.ui.binding
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
+import com.edwin.randompicture.ui.thirdparty.glide.GlideApp
 import javax.inject.Inject
 
 
@@ -11,6 +11,6 @@ class FragmentBindingAdapters @Inject constructor(private val fragment: Fragment
 
     @BindingAdapter("imageUrl")
     fun bindImage(imageView: ImageView, url: String?) {
-        Glide.with(fragment).load(url).into(imageView)
+        GlideApp.with(fragment).load(url).centerCrop().into(imageView)
     }
 }
