@@ -14,6 +14,9 @@ android {
 dependencies {
     implementation project(':domain')
 
+    implementation deps.support.app_compat
+    implementation deps.support.recyclerview
+
     implementation deps.kotlin.stdlib
     implementation deps.lifecycle.extensions
 

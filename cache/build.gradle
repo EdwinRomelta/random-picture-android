@@ -16,6 +16,8 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 }
 
@@ -32,4 +34,8 @@ dependencies {
     implementation deps.room.runtime
     implementation deps.room.rxjava2
     kapt deps.room.compiler
+
+    testImplementation deps.junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.espresso.core
 }
