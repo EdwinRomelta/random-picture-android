@@ -1,7 +1,7 @@
 package com.edwin.randompicture.presentation.viewmodel.pendingpost
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.edwin.randompicture.domain.interactor.usecase.GetPendingPostDataSource
 import com.edwin.randompicture.domain.interactor.usecase.SavePendingPost
 import com.edwin.randompicture.presentation.mapper.PendingPostMapper

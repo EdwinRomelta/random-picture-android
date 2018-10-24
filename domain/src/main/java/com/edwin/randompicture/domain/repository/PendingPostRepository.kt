@@ -1,6 +1,6 @@
 package com.edwin.randompicture.domain.repository
 
-import android.arch.paging.DataSource
+import androidx.paging.DataSource
 import com.edwin.randompicture.domain.model.PendingPost
 import io.reactivex.Completable
 import io.reactivex.Flowable

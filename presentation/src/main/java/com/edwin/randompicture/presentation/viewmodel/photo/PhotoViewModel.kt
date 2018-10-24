@@ -1,6 +1,6 @@
 package com.edwin.randompicture.presentation.viewmodel.photo
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.edwin.randompicture.domain.interactor.usecase.SavePhoto
 import com.edwin.randompicture.presentation.R
 import com.edwin.randompicture.presentation.data.ActionLiveData

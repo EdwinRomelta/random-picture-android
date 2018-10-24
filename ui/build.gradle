@@ -16,7 +16,7 @@ android {
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -82,10 +82,11 @@ dependencies {
         exclude group: 'android.arch.lifecycle'
         exclude group: 'android.arch.persistence.room'
     }
+    implementation deps.room.runtime
 
     implementation deps.camera_kit
-
-    implementation 'me.mvdw.recyclerviewmergeadapter:recyclerviewmergeadapter:2.1.0'
+    implementation deps.photoview
+    implementation deps.mergeadapter
 
     testImplementation deps.junit
     androidTestImplementation deps.atsl.runner

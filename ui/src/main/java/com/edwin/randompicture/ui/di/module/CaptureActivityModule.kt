@@ -1,6 +1,6 @@
 package com.edwin.randompicture.ui.di.module
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.edwin.randompicture.domain.interactor.usecase.SavePhoto
 import com.edwin.randompicture.presentation.mapper.PhotoMapper
 import com.edwin.randompicture.presentation.viewmodel.photo.PhotoViewModelFactory

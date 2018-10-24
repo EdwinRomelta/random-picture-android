@@ -1,13 +1,12 @@
 package com.edwin.randompicture.ui.binding
 
-import android.databinding.BindingAdapter
-import android.support.v4.app.Fragment
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import javax.inject.Inject
 
 
-class FragmentBindingAdapters @Inject constructor(private val fragment: Fragment) {
+class FragmentBindingAdapters @Inject constructor(private val fragment: androidx.fragment.app.Fragment) {
 
     @BindingAdapter("imageUrl")
     fun bindImage(imageView: ImageView, url: String?) {

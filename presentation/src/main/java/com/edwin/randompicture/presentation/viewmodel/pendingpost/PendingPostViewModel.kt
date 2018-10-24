@@ -1,8 +1,8 @@
 package com.edwin.randompicture.presentation.viewmodel.pendingpost
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.net.Uri
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.edwin.randompicture.domain.interactor.usecase.SavePendingPost
 import com.edwin.randompicture.domain.model.PendingPost
 import com.edwin.randompicture.presentation.R

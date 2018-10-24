@@ -1,14 +1,14 @@
 package com.edwin.randompicture.ui.screen.main.fragment
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.MainFragmentBinding
 import com.edwin.randompicture.presentation.data.NetworkState
@@ -24,7 +24,6 @@ import com.edwin.randompicture.ui.util.autoCleared
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.main_fragment.*
 import me.mvdw.recyclerviewmergeadapter.adapter.RecyclerViewMergeAdapter
-import org.jetbrains.anko.support.v4.onRefresh
 import javax.inject.Inject
 
 class MainFragment : BaseFragment(), Injectable {
@@ -58,7 +57,7 @@ class MainFragment : BaseFragment(), Injectable {
                               savedInstanceState: Bundle?): View? {
         val databinding: MainFragmentBinding = DataBindingUtil.inflate(layoutInflater, R.layout.main_fragment, container, false)
         databinding.onCapture = View.OnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_captureActivity)
+            findNavController(this).navigate(R.id.action_mainFragment_to_captureActivity)
         }
         binding = databinding
         return databinding.root
@@ -71,7 +70,7 @@ class MainFragment : BaseFragment(), Injectable {
             mainAdapter.addAdapter(pendingPostAdapter)
             mainAdapter.addAdapter(postAdapter)
             adapter = mainAdapter
-            swipeRefreshLayout.onRefresh {
+            swipeRefreshLayout.setOnRefreshListener {
                 postsViewModel.refresh()
             }
         }

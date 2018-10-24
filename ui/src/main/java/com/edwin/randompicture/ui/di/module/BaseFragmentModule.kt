@@ -1,6 +1,6 @@
 package com.edwin.randompicture.ui.di.module
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.edwin.randompicture.ui.binding.FragmentDataBindingComponent
 import com.edwin.randompicture.ui.di.scope.PerFragment
 import com.tbruyelle.rxpermissions2.RxPermissions

@@ -1,13 +1,12 @@
 package com.edwin.randompicture.ui.binding
 
-import android.databinding.DataBindingComponent
-import android.support.v4.app.Fragment
+import androidx.databinding.DataBindingComponent
 
 
 /**
  * A Data Binding Component implementation for fragments.
  */
-class FragmentDataBindingComponent(private val fragment: Fragment) : DataBindingComponent {
+class FragmentDataBindingComponent(private val fragment: androidx.fragment.app.Fragment) : DataBindingComponent {
 
     override fun getFragmentBindingAdapters() = FragmentBindingAdapters(fragment)
 }

@@ -1,13 +1,13 @@
 package com.edwin.randompicture.ui.screen.capture.fragment
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.PublishFragmentBinding
 import com.edwin.randompicture.presentation.data.ResourceState

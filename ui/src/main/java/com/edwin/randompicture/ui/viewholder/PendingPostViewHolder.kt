@@ -1,15 +1,14 @@
 package com.edwin.randompicture.ui.viewholder
 
-import android.databinding.DataBindingComponent
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingComponent
+import androidx.databinding.DataBindingUtil
 import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.PendingPostViewBinding
 import com.edwin.randompicture.ui.model.PendingPostViewModel
 
-class PendingPostViewHolder(private val pendingPostViewBinding: PendingPostViewBinding) : RecyclerView.ViewHolder(pendingPostViewBinding.root) {
+class PendingPostViewHolder(private val pendingPostViewBinding: PendingPostViewBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(pendingPostViewBinding.root) {
 
     companion object {
         fun create(parent: ViewGroup, dataBindingComponent: DataBindingComponent): PendingPostViewHolder {

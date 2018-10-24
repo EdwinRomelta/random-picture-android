@@ -1,6 +1,6 @@
 package com.edwin.randompicture.cache
 
-import android.arch.paging.DataSource
+import androidx.paging.DataSource
 import com.edwin.randompicture.cache.db.RandomPictureDatabase
 import com.edwin.randompicture.cache.mapper.PendingPostEntityMapper
 import com.edwin.randompicture.data.model.PendingPostEntity

@@ -10,7 +10,7 @@
             type="com.edwin.randompicture.ui.model.PreviewPendingPostViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".screen.capture.fragment.PublishFragment">
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/caption_text_input_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -55,7 +55,7 @@
                 android:hint="@string/publishscreen_captionhint"
                 android:text="@={previewPendingPost.caption}" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/publish_button"
@@ -72,5 +72,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

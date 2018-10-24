@@ -1,10 +1,9 @@
 package com.edwin.randompicture.ui.screen.main.adapter
 
-import android.arch.paging.PagedListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import com.edwin.randompicture.R
 import com.edwin.randompicture.presentation.data.NetworkState
 import com.edwin.randompicture.presentation.model.PostView
@@ -17,7 +16,7 @@ import javax.inject.Inject
 
 class PostAdapter @Inject constructor(private val fragmentDataBindingComponent: FragmentDataBindingComponent,
                                       private val postMapper: PostMapper) :
-        PagedListAdapter<PostView, RecyclerView.ViewHolder>(diffCallback) {
+        PagedListAdapter<PostView, androidx.recyclerview.widget.RecyclerView.ViewHolder>(diffCallback) {
 
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<PostView>() {
@@ -32,7 +31,7 @@ class PostAdapter @Inject constructor(private val fragmentDataBindingComponent: 
     private lateinit var layoutInflater: LayoutInflater
     private var networkState: NetworkState? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         if (!::layoutInflater.isInitialized) {
             layoutInflater = LayoutInflater.from(parent.context)
         }
@@ -43,7 +42,7 @@ class PostAdapter @Inject constructor(private val fragmentDataBindingComponent: 
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             R.layout.post_view -> {
                 val item = getItem(position)

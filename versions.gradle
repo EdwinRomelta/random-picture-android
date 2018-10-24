@@ -1,28 +1,31 @@
 ext.deps = [:]
 def versions = [:]
-versions.anko = "0.10.5"
+versions.anko = "0.10.7"
 versions.kotlin = "1.2.51"
 versions.android_gradle_plugin = "3.2.1"
-versions.support = "28.0.0"
-versions.atsl_runner = "1.0.2"
-versions.espresso = "3.0.2"
+versions.support = "1.0.0"
+versions.atsl_runner = "1.1.0-beta02"
+versions.espresso = "3.1.0-beta02"
 versions.junit = "4.12"
-versions.dagger = "2.17"
-versions.navigation = "1.0.0-alpha05"
-versions.constraint_layout = "1.1.2"
+versions.dagger = "2.16"
+versions.navigation = "1.0.0-alpha06"
+versions.constraint_layout = "2.0.0-alpha2"
 versions.camera_kit = "0.13.1"
-versions.lifecycle = "1.1.1"
+versions.lifecycle = "2.0.0"
 versions.okhttp3 = "3.11.0"
+versions.mergeadapter = "2.1.0"
 versions.retrofit = "2.4.0"
 versions.rxjava2 = "2.2.0"
 versions.rx_android = "2.1.0"
 versions.rx_binding = "2.1.1"
 versions.rxpermissions = "0.10.2"
 versions.paperparcel = "2.0.6"
-versions.paging = "1.0.0"
+versions.paging = "2.1.0-alpha01"
+versions.photoview = "2.2.0"
+versions.sqlite = "2.0.0"
 versions.glide = "4.8.0"
-versions.room = "1.1.1"
-versions.work = "1.0.0-alpha09"
+versions.room = "2.1.0-alpha01"
+versions.work = "1.0.0-alpha10"
 
 def deps = [:]
 
@@ -38,29 +41,29 @@ anko.design = "org.jetbrains.anko:anko-design:$versions.anko"
 deps.anko = anko
 
 def support = [:]
-support.app_compat = "com.android.support:appcompat-v7:$versions.support"
-support.v4 = "com.android.support:support-v4:$versions.support"
-support.cardview = "com.android.support:cardview-v7:$versions.support"
-support.design = "com.android.support:design:$versions.support"
-support.recyclerview = "com.android.support:recyclerview-v7:$versions.support"
-support.exifinterface = "com.android.support:exifinterface:$versions.support"
+support.app_compat = "androidx.appcompat:appcompat:$versions.support"
+support.v4 = "androidx.legacy:legacy-support-v4:$versions.support"
+support.cardview = "androidx.cardview:cardview:$versions.support"
+support.design = "com.google.android.material:material:$versions.support"
+support.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
+support.exifinterface = "androidx.exifinterface:exifinterface:$versions.support"
 deps.support = support
 
 def lifecycle = [:]
-lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.lifecycle"
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
 deps.lifecycle = lifecycle
 
 def paging = [:]
-paging.runtime = "android.arch.paging:runtime:$versions.paging"
-paging.rxjava2 = "android.arch.paging:rxjava2:1.0.0-rc1"
+paging.runtime = "androidx.paging:paging-runtime:$versions.paging"
+paging.rxjava2 = "androidx.paging:paging-rxjava2:$versions.paging"
 deps.paging = paging
 
-
 def room = [:]
-room.runtime = "android.arch.persistence.room:runtime:$versions.room"
-room.compiler = "android.arch.persistence.room:compiler:$versions.room"
-room.rxjava2 = "android.arch.persistence.room:rxjava2:$versions.room"
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
 deps.room = room
+
 
 def dagger = [:]
 dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
@@ -71,11 +74,11 @@ dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$v
 deps.dagger = dagger
 
 def espresso = [:]
-espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
+espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
 deps.espresso = espresso
 
 def atsl = [:]
-atsl.runner = "com.android.support.test:runner:$versions.atsl_runner"
+atsl.runner = "androidx.test:runner:$versions.atsl_runner"
 deps.atsl = atsl
 
 def navigation = [:]
@@ -119,12 +122,15 @@ okhttp3.runtime = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
 okhttp3.interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
 deps.okhttp3 = okhttp3
 
+deps.sqlite = "androidx.sqlite:sqlite:$versions.sqlite"
 deps.junit = "junit:junit:$versions.junit"
 deps.camera_kit = "com.wonderkiln:camerakit:$versions.camera_kit"
-deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
+deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
 deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
 deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 deps.rxpermission = "com.github.tbruyelle:rxpermissions:$versions.rxpermissions"
+deps.photoview = "com.github.chrisbanes:PhotoView:$versions.photoview"
+deps.mergeadapter = "me.mvdw.recyclerviewmergeadapter:recyclerviewmergeadapter:$versions.mergeadapter"
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 ext.deps = deps

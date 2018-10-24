@@ -1,7 +1,7 @@
 package com.edwin.randompicture.presentation.viewmodel.photo
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.edwin.randompicture.domain.interactor.usecase.SavePhoto
 import com.edwin.randompicture.presentation.mapper.PhotoMapper
 import javax.inject.Inject

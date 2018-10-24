@@ -1,6 +1,6 @@
 package com.edwin.randompicture.domain.interactor.usecase
 
-import android.arch.paging.DataSource
+import androidx.paging.DataSource
 import com.edwin.randompicture.domain.executor.PostExecutionThread
 import com.edwin.randompicture.domain.executor.ThreadExecutor
 import com.edwin.randompicture.domain.interactor.SingleUseCase

@@ -1,7 +1,7 @@
 package com.edwin.randompicture.presentation.viewmodel.post
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.edwin.randompicture.domain.interactor.usecase.GetAndSavePost
 import com.edwin.randompicture.domain.interactor.usecase.GetPostDataSource
 import com.edwin.randompicture.presentation.mapper.PostMapper

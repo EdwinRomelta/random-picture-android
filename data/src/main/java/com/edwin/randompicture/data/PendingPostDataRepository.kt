@@ -1,6 +1,6 @@
 package com.edwin.randompicture.data
 
-import android.arch.paging.DataSource
+import androidx.paging.DataSource
 import com.edwin.randompicture.data.mapper.PendingPostMapper
 import com.edwin.randompicture.data.source.pendingpost.PendingPostDataStoreFactory
 import com.edwin.randompicture.domain.model.PendingPost

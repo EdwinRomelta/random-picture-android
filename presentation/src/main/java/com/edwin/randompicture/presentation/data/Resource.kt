@@ -1,6 +1,6 @@
 package com.edwin.randompicture.presentation.data
 
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import com.edwin.randompicture.presentation.data.error.ErrorResource
 
 open class Resource<out T> constructor(val status: ResourceState, val data: T?, @StringRes val errorResource: ErrorResource?) {

@@ -1,7 +1,7 @@
 package com.edwin.randompicture.cache.dao
 
-import android.arch.paging.DataSource
-import android.arch.persistence.room.*
+import androidx.paging.DataSource
+import androidx.room.*
 import com.edwin.randompicture.cache.model.CachedPendingPost
 import io.reactivex.Flowable
 

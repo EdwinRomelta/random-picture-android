@@ -1,6 +1,6 @@
 package com.edwin.randompicture.data.repository.post
 
-import android.arch.paging.DataSource
+import androidx.paging.DataSource
 import com.edwin.randompicture.data.model.PostEntity
 import com.edwin.randompicture.domain.interactor.usecase.GetAndSavePost
 import io.reactivex.Completable
