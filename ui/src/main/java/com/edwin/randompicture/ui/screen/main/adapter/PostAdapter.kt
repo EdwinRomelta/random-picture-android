@@ -15,6 +15,7 @@ import javax.inject.Inject
 
 
 class PostAdapter @Inject constructor(private val fragmentDataBindingComponent: FragmentDataBindingComponent,
+                                      private val postItemDelegate: PostViewHolder.PostItemDelegate,
                                       private val postMapper: PostMapper) :
         PagedListAdapter<PostView, androidx.recyclerview.widget.RecyclerView.ViewHolder>(diffCallback) {
 
@@ -36,7 +37,7 @@ class PostAdapter @Inject constructor(private val fragmentDataBindingComponent: 
             layoutInflater = LayoutInflater.from(parent.context)
         }
         return when (viewType) {
-            R.layout.post_view -> PostViewHolder.create(parent, fragmentDataBindingComponent)
+            R.layout.post_view -> PostViewHolder.create(parent, fragmentDataBindingComponent, postItemDelegate)
             R.layout.network_state_item -> NetworkStateViewHolder.create(parent, fragmentDataBindingComponent)
             else -> throw IllegalArgumentException("unknown view type $viewType")
         }

@@ -13,9 +13,20 @@
         <action
             android:id="@+id/action_mainFragment_to_captureActivity"
             app:destination="@id/captureActivity" />
+        <action
+            android:id="@+id/action_mainFragment_to_previewActivity"
+            app:destination="@id/previewActivity" />
     </fragment>
     <activity
         android:id="@+id/captureActivity"
         android:name="com.edwin.randompicture.ui.screen.capture.CaptureActivity"
         android:label="CaptureActivity" />
+    <activity
+        android:id="@+id/previewActivity"
+        android:name="com.edwin.randompicture.ui.screen.preview.PreviewActivity"
+        android:label="PreviewActivity">
+        <argument
+            android:name="imgUri"
+            app:argType="string" />
+    </activity>
 </navigation>

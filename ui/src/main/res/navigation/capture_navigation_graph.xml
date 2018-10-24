@@ -23,5 +23,16 @@
             android:name="filePath"
             app:argType="string"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_publishFragment_to_previewActivity"
+            app:destination="@id/previewActivity" />
     </fragment>
+    <activity
+        android:id="@+id/previewActivity"
+        android:name="com.edwin.randompicture.ui.screen.preview.PreviewActivity"
+        android:label="PreviewActivity">
+        <argument
+            android:name="imgUri"
+            app:argType="string" />
+    </activity>
 </navigation>

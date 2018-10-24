@@ -29,5 +29,10 @@
         <activity
             android:name=".ui.screen.capture.CaptureActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.screen.preview.PreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Fullscreen" />
     </application>
 </manifest>

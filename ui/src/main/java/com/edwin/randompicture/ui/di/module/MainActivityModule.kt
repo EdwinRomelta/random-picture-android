@@ -7,6 +7,7 @@ import com.edwin.randompicture.presentation.mapper.PostMapper
 import com.edwin.randompicture.presentation.viewmodel.post.PostViewModelFactory
 import com.edwin.randompicture.ui.di.scope.PerFragment
 import com.edwin.randompicture.ui.screen.main.fragment.MainFragment
+import com.edwin.randompicture.ui.viewholder.PostViewHolder
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -33,4 +34,8 @@ class MainFragmentModule {
     @PerFragment
     @Provides
     fun provideFragment(mainFragment: MainFragment): Fragment = mainFragment
+
+    @PerFragment
+    @Provides
+    fun providePostItemDelegate(mainFragment: MainFragment): PostViewHolder.PostItemDelegate = mainFragment
 }

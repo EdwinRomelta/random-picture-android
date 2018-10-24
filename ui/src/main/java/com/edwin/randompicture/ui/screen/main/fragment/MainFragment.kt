@@ -18,15 +18,18 @@ import com.edwin.randompicture.presentation.viewmodel.post.PostViewModelFactory
 import com.edwin.randompicture.presentation.viewmodel.post.PostsViewModel
 import com.edwin.randompicture.ui.base.BaseFragment
 import com.edwin.randompicture.ui.di.Injectable
+import com.edwin.randompicture.ui.model.PostViewModel
 import com.edwin.randompicture.ui.screen.main.adapter.PendingPostAdapter
 import com.edwin.randompicture.ui.screen.main.adapter.PostAdapter
+import com.edwin.randompicture.ui.screen.preview.PreviewActivityArgs
 import com.edwin.randompicture.ui.util.autoCleared
+import com.edwin.randompicture.ui.viewholder.PostViewHolder
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.main_fragment.*
 import me.mvdw.recyclerviewmergeadapter.adapter.RecyclerViewMergeAdapter
 import javax.inject.Inject
 
-class MainFragment : BaseFragment(), Injectable {
+class MainFragment : BaseFragment(), Injectable, PostViewHolder.PostItemDelegate {
 
     companion object {
         fun newInstance() = MainFragment()
@@ -94,5 +97,14 @@ class MainFragment : BaseFragment(), Injectable {
                 swipeRefreshLayout.isRefreshing = networkState == NetworkState.LOADING
             })
         })
+    }
+
+    override fun onItemClick(postViewModel: PostViewModel) {
+        preview(postViewModel.imgPath)
+    }
+
+    private fun preview(imgUri: String) {
+        findNavController(this).navigate(R.id.action_mainFragment_to_previewActivity,
+                PreviewActivityArgs.Builder(imgUri).build().toBundle())
     }
 }

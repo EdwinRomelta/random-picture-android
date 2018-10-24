@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.PublishFragmentBinding
 import com.edwin.randompicture.presentation.data.ResourceState
@@ -19,6 +20,7 @@ import com.edwin.randompicture.ui.base.BaseFragment
 import com.edwin.randompicture.ui.binding.FragmentDataBindingComponent
 import com.edwin.randompicture.ui.di.Injectable
 import com.edwin.randompicture.ui.mapper.PreviewPendingPostMapper
+import com.edwin.randompicture.ui.screen.preview.PreviewActivityArgs
 import com.edwin.randompicture.ui.util.autoCleared
 import com.jakewharton.rxbinding2.view.clicks
 import io.reactivex.disposables.CompositeDisposable
@@ -45,6 +47,14 @@ class PublishFragment : BaseFragment(), Injectable {
                         .subscribe {
                             databinding.previewPendingPost?.apply {
                                 pendingPostViewModel.submitPendingPost(imagePath, caption)
+                            }
+                        })
+        onCreateDisposable.add(
+                binding.previewImageView.clicks()
+                        .subscribe { _ ->
+                            databinding.previewPendingPost?.let {
+                                NavHostFragment.findNavController(this).navigate(R.id.action_publishFragment_to_previewActivity,
+                                        PreviewActivityArgs.Builder(it.imagePath).build().toBundle())
                             }
                         })
         return binding.root
