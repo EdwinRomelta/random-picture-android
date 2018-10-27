@@ -7,5 +7,13 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.edwin.randompicture.ui.screen.signup.fragment.LoginFragment"
-        android:label="@string/loginfragment_title" />
+        android:label="@string/loginfragment_title">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.edwin.randompicture.ui.screen.signup.fragment.RegisterFragment"
+        android:label="RegisterFragment" />
 </navigation>

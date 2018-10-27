@@ -7,6 +7,7 @@ import com.edwin.randompicture.presentation.mapper.PostMapper
 import com.edwin.randompicture.presentation.viewmodel.post.PostViewModelFactory
 import com.edwin.randompicture.ui.di.scope.PerFragment
 import com.edwin.randompicture.ui.screen.signup.fragment.LoginFragment
+import com.edwin.randompicture.ui.screen.signup.fragment.RegisterFragment
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -24,8 +25,11 @@ abstract class LoginFragmentBuildersModule {
     @PerFragment
     @ContributesAndroidInjector(modules = [LoginFragmentModule::class])
     abstract fun contributeLoginFragment(): LoginFragment
-}
 
+    @PerFragment
+    @ContributesAndroidInjector(modules = [RegisterFragmentModule::class])
+    abstract fun contributeRegisterFragment(): RegisterFragment
+}
 
 @Module(includes = [BaseFragmentModule::class])
 class LoginFragmentModule {
@@ -33,4 +37,13 @@ class LoginFragmentModule {
     @PerFragment
     @Provides
     fun provideFragment(loginFragment: LoginFragment): Fragment = loginFragment
+}
+
+
+@Module(includes = [BaseFragmentModule::class])
+class RegisterFragmentModule {
+
+    @PerFragment
+    @Provides
+    fun provideFragment(registerFragment: RegisterFragment): Fragment = registerFragment
 }
