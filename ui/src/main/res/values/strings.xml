@@ -10,4 +10,10 @@
     <string name="publishscreen_publishbutton">Publish</string>
     <string name="publishscreen_erroremptycaption">Empty Caption</string>
     <string name="publishscreen_captionhint">Caption</string>
+    <string name="navigationheader_login">Log in</string>
+    <string name="loginfragment_title">Log In</string>
+    <string name="loginfragment_loginbutton">Login</string>
+    <string name="loginfragment_registerbutton">Register</string>
+    <string name="signupscreen_emailhint">Email</string>
+    <string name="singupscreen_passwordhint">Password</string>
 </resources>

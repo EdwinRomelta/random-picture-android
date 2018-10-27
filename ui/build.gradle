@@ -17,6 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -71,6 +72,9 @@ dependencies {
     implementation deps.rxbinding.rx_binding
     implementation deps.rxbinding.design
     implementation deps.rxpermission
+    implementation deps.multidex
+
+    implementation deps.firebase.auth
 
     kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler
@@ -93,3 +97,5 @@ dependencies {
     androidTestImplementation deps.espresso.core
 
 }
+
+apply plugin: 'com.google.gms.google-services'

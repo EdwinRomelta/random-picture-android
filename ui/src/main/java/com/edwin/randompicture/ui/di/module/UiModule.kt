@@ -8,6 +8,7 @@ import com.edwin.randompicture.ui.di.scope.PerApplication
 import com.edwin.randompicture.ui.screen.UiThread
 import com.edwin.randompicture.ui.screen.capture.CaptureActivity
 import com.edwin.randompicture.ui.screen.main.MainActivity
+import com.edwin.randompicture.ui.screen.signup.SignUpActivity
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -30,6 +31,10 @@ abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
     abstract fun contributeMainActivity(): MainActivity
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = [SignUpActivityModule::class])
+    abstract fun contributeSignUpActivity(): SignUpActivity
 
     @PerActivity
     @ContributesAndroidInjector(modules = [CaptureActivityModule::class])

@@ -27,6 +27,10 @@
         </activity>
 
         <activity
+            android:name=".ui.screen.signup.SignUpActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.screen.capture.CaptureActivity"
             android:screenOrientation="portrait" />
 

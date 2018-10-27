@@ -6,14 +6,17 @@ versions.android_gradle_plugin = "3.2.1"
 versions.support = "1.0.0"
 versions.atsl_runner = "1.1.0-beta02"
 versions.espresso = "3.1.0-beta02"
+versions.firebase = "16.0.4"
 versions.junit = "4.12"
 versions.dagger = "2.16"
 versions.navigation = "1.0.0-alpha06"
 versions.constraint_layout = "2.0.0-alpha2"
 versions.camera_kit = "0.13.1"
+versions.google_service = "4.1.0"
 versions.lifecycle = "2.0.0"
 versions.okhttp3 = "3.11.0"
 versions.mergeadapter = "2.1.0"
+versions.multidex = "1.0.3"
 versions.retrofit = "2.4.0"
 versions.rxjava2 = "2.2.0"
 versions.rx_android = "2.1.0"
@@ -64,6 +67,9 @@ room.compiler = "androidx.room:room-compiler:$versions.room"
 room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
 deps.room = room
 
+def firebase =[:]
+firebase.auth = "com.google.firebase:firebase-auth:$versions.firebase"
+deps.firebase = firebase
 
 def dagger = [:]
 dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
@@ -122,6 +128,7 @@ okhttp3.runtime = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
 okhttp3.interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
 deps.okhttp3 = okhttp3
 
+deps.multidex = "com.android.support:multidex:$versions.multidex"
 deps.sqlite = "androidx.sqlite:sqlite:$versions.sqlite"
 deps.junit = "junit:junit:$versions.junit"
 deps.camera_kit = "com.wonderkiln:camerakit:$versions.camera_kit"
@@ -133,10 +140,11 @@ deps.photoview = "com.github.chrisbanes:PhotoView:$versions.photoview"
 deps.mergeadapter = "me.mvdw.recyclerviewmergeadapter:recyclerviewmergeadapter:$versions.mergeadapter"
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.google_service ="com.google.gms:google-services:$versions.google_service"
 ext.deps = deps
 
 def build_versions = [:]
-build_versions.min_sdk = 15
+build_versions.min_sdk = 16
 build_versions.target_sdk = 28
 build_versions.build_tools = "28.0.3"
 ext.build_versions = build_versions
