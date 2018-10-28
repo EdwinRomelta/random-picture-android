@@ -16,5 +16,7 @@
     <string name="loginfragment_registerbutton">Register</string>
     <string name="signupscreen_emailhint">Email</string>
     <string name="singupscreen_passwordhint">Password</string>
+    <string name="signupscreen_erroremptyemail">Empty Email</string>
+    <string name="signupscreen_erroremptypassword">Empty Password</string>
     <string name="registerscreen_reenterpasswordhint">Re-enter password</string>
 </resources>

@@ -88,7 +88,7 @@ class PublishFragment : BaseFragment(), Injectable {
                     it.errorResource?.let { errorResource ->
                         when (errorResource) {
                             is ValidationErrorResource -> {
-                                if (errorResource.errorCode == PendingPostViewModel.EMPTY_CAPTION) {
+                                if (errorResource.errorCode == PendingPostViewModel.VALIDATION_EMPTY_CAPTION) {
                                     binding.captionTextInputLayout.error = getString(R.string.publishscreen_erroremptycaption)
                                 } else {
 

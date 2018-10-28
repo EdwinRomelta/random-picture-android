@@ -1,6 +1,7 @@
 package com.edwin.randompicture.remote
 
 import com.edwin.randompicture.remote.model.PostModel
+import com.edwin.randompicture.remote.model.UserModel
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -22,4 +23,9 @@ interface RandomPictureService {
     fun postPost(@Part file: MultipartBody.Part,
                  @Part("text") caption: RequestBody,
                  @Part("timestamp") createTimeStamp: RequestBody): Single<PostModel>
+
+    @Multipart
+    @POST("login/")
+    fun login(@Part("email") email: RequestBody,
+              @Part("password") password: RequestBody): Single<UserModel>
 }

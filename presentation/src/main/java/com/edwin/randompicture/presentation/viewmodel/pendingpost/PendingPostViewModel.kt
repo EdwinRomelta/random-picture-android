@@ -20,7 +20,7 @@ class PendingPostViewModel @Inject constructor(
         private val savePendingPost: SavePendingPost) : BaseViewModel() {
 
     companion object {
-        const val EMPTY_CAPTION = 10001
+        const val VALIDATION_EMPTY_CAPTION = 10001
     }
 
     private val pendingPostLiveData = MutableLiveData<PendingPostView>()
@@ -31,7 +31,7 @@ class PendingPostViewModel @Inject constructor(
 
     fun submitPendingPost(imagePath: String, caption: String?) {
         if (caption == null || caption.isEmpty()) {
-            uploadPendingPostLiveData.postValue(Resource.error(ValidationErrorResource(EMPTY_CAPTION)))
+            uploadPendingPostLiveData.postValue(Resource.error(ValidationErrorResource(VALIDATION_EMPTY_CAPTION)))
             return
         }
         savePendingPost.execute(PendingPostSubscriber(),
