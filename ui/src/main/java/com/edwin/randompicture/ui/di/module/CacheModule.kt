@@ -1,6 +1,7 @@
 package com.edwin.randompicture.ui.di.module
 
 import android.app.Application
+import android.content.SharedPreferences
 import com.edwin.randompicture.cache.PendingPostCacheImpl
 import com.edwin.randompicture.cache.PhotoCacheImpl
 import com.edwin.randompicture.cache.PostCacheImpl
@@ -13,9 +14,13 @@ import com.edwin.randompicture.data.repository.session.SessionCache
 import com.edwin.randompicture.ui.di.scope.PerApplication
 import dagger.Module
 import dagger.Provides
+import org.jetbrains.anko.defaultSharedPreferences
 
 @Module
 class CacheModule {
+
+    @Provides
+    fun provideSharedPreferences(application: Application): SharedPreferences = application.defaultSharedPreferences
 
     @Provides
     fun provideRandomPictureDatabase(application: Application) = RandomPictureDatabase.initialize(application)

@@ -1,5 +1,6 @@
 package com.edwin.randompicture.remote
 
+import com.edwin.randompicture.remote.interceptor.HeaderInterceptor
 import com.edwin.randompicture.remote.interceptor.ResponseCodeInterceptor
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -13,6 +14,8 @@ const val DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
 object RandomPictureServiceFactory {
 
+    private val headerInterceptor = HeaderInterceptor()
+
     private val gson = GsonBuilder()
             .setLenient()
             .setDateFormat(DATE_FORMAT)
@@ -25,6 +28,7 @@ object RandomPictureServiceFactory {
             OkHttpClient.Builder()
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
+                    .addInterceptor(headerInterceptor)
                     .addInterceptor(logging)
                     .addInterceptor(ResponseCodeInterceptor(gson))
                     .build()
@@ -38,4 +42,11 @@ object RandomPictureServiceFactory {
                     .build()
                     .create(RandomPictureService::class.java)
 
+    fun addSession(token: String) {
+        headerInterceptor.addToken(token)
+    }
+
+    fun clearSession() {
+        headerInterceptor.clearHeader()
+    }
 }

@@ -3,10 +3,14 @@ package com.edwin.randompicture.ui.screen.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.MainActivityBinding
+import com.edwin.randompicture.presentation.viewmodel.session.SessionViewModel
+import com.edwin.randompicture.presentation.viewmodel.session.SessionViewModelFactory
 import com.edwin.randompicture.ui.screen.signup.SignUpActivity
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -21,11 +25,15 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector, Navigation
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<androidx.fragment.app.Fragment>
+    @Inject
+    lateinit var viewModelFactory: SessionViewModelFactory
 
+    lateinit var sessionViewModel: SessionViewModel
     lateinit var navigationHeader: NavigationHeader
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sessionViewModel = ViewModelProviders.of(this, viewModelFactory).get(SessionViewModel::class.java)
         val binding: MainActivityBinding = DataBindingUtil.setContentView(this, R.layout.main_activity)
         setSupportActionBar(binding.toolbar)
 
@@ -33,6 +41,13 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector, Navigation
         setupActionBarWithNavController(this, mainNavigationController)
 
         navigationHeader = NavigationHeader.addNavigationHeader(binding.navigationView, this)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        sessionViewModel.session.observe(this, Observer {
+            navigationHeader.setSession(it)
+        })
     }
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector

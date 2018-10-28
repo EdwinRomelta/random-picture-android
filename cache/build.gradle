@@ -35,6 +35,8 @@ dependencies {
     implementation deps.room.rxjava2
     kapt deps.room.compiler
 
+    implementation deps.rxpreference
+
     testImplementation deps.junit
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.espresso.core

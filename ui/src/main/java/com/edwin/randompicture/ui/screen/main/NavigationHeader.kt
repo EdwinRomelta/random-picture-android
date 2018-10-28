@@ -4,10 +4,11 @@ import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import com.edwin.randompicture.R
 import com.edwin.randompicture.databinding.NavigationHeaderBinding
+import com.edwin.randompicture.presentation.model.SessionView
 import com.google.android.material.navigation.NavigationView
 
 
-class NavigationHeader private constructor(navigationHeaderBinding: NavigationHeaderBinding,
+class NavigationHeader private constructor(private val navigationHeaderBinding: NavigationHeaderBinding,
                                            private val navigationHeaderListener: NavigationHeaderListener) {
 
     companion object {
@@ -24,8 +25,14 @@ class NavigationHeader private constructor(navigationHeaderBinding: NavigationHe
         }
     }
 
-    fun setUser() {
-
+    fun setSession(sessionView: SessionView?) {
+        navigationHeaderBinding.apply {
+            if (sessionView != null) {
+                nameTextView.text = sessionView.name
+            } else {
+                nameTextView.setText(R.string.navigationheader_login)
+            }
+        }
     }
 }
 
