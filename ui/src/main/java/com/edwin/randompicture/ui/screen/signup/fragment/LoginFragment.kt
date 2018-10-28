@@ -3,6 +3,8 @@ package com.edwin.randompicture.ui.screen.signup.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -57,28 +59,36 @@ class LoginFragment : BaseFragment(), Injectable {
     override fun onStart(onStartDisposable: CompositeDisposable) {
         super.onStart(onStartDisposable)
         loginViewModel.loginResponse.observe(this, Observer { resource ->
-            when (resource?.status) {
-                ResourceState.SUCCESS -> {
-                    activity?.finish()
-                }
-                ResourceState.LOADING -> {
-                    binding.emailTextInputLayout.error = null
-                    binding.passwordTextInputLayout.error = null
-                }
-                ResourceState.ERROR -> {
-                    val errorResource = resource.errorResource
-                    if (null != errorResource)
-                        when (errorResource) {
-                            is ValidationErrorResource -> {
-                                if (errorResource.errorCode == LoginViewModel.VALIDATION_EMPTY_EMAIL) {
-                                    binding.emailTextInputLayout.error = getString(R.string.signupscreen_erroremptyemail)
+            binding.apply {
+                when (resource?.status) {
+                    ResourceState.SUCCESS -> {
+                        activity?.finish()
+                    }
+                    ResourceState.LOADING -> {
+                        emailTextInputLayout.error = null
+                        passwordTextInputLayout.error = null
+                        progressBar.visibility = VISIBLE
+                        loginButton.visibility = GONE
+                        registerButton.visibility = GONE
+                    }
+                    ResourceState.ERROR -> {
+                        progressBar.visibility = GONE
+                        loginButton.visibility = VISIBLE
+                        registerButton.visibility = VISIBLE
+                        val errorResource = resource.errorResource
+                        if (null != errorResource)
+                            when (errorResource) {
+                                is ValidationErrorResource -> {
+                                    if (errorResource.errorCode == LoginViewModel.VALIDATION_EMPTY_EMAIL) {
+                                        emailTextInputLayout.error = getString(R.string.signupscreen_erroremptyemail)
+                                    }
+                                    if (errorResource.errorCode == LoginViewModel.VALIDATION_EMPTY_PASSWORD) {
+                                        passwordTextInputLayout.error = getString(R.string.signupscreen_erroremptypassword)
+                                    }
                                 }
-                                if (errorResource.errorCode == LoginViewModel.VALIDATION_EMPTY_PASSWORD) {
-                                    binding.passwordTextInputLayout.error = getString(R.string.signupscreen_erroremptypassword)
-                                }
+                                else -> context?.let { errorResource.show(it) }
                             }
-                            else -> context?.let { errorResource.show(it) }
-                        }
+                    }
                 }
             }
         })

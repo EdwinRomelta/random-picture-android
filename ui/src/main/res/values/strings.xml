@@ -1,6 +1,6 @@
 <resources>
     <string name="all_appname">Random Picture</string>
-    <string name="all_ok">Ok</string>
+    <string name="all_ok">OK</string>
 
     <string name="permissionalert_opensetting">Open Setting</string>
     <string name="capturescreen_permissionrationale">In order to capture image we need camera and storage permission</string>
@@ -13,10 +13,11 @@
     <string name="navigationheader_login">Log in</string>
     <string name="loginfragment_title">Log In</string>
     <string name="loginfragment_loginbutton">Login</string>
-    <string name="loginfragment_registerbutton">Register</string>
+    <string name="loginfragment_registerbutton">No account yet? Create one</string>
     <string name="signupscreen_emailhint">Email</string>
     <string name="singupscreen_passwordhint">Password</string>
     <string name="signupscreen_erroremptyemail">Empty Email</string>
     <string name="signupscreen_erroremptypassword">Empty Password</string>
     <string name="registerscreen_reenterpasswordhint">Re-enter password</string>
+    <string name="registerscreen_registerbutton">Sign Up</string>
 </resources>
