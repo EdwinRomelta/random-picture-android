@@ -21,6 +21,16 @@ class SessionRemoteImpl @Inject constructor(
                 }
             }
 
+    override fun doRegister(email: String, name: String, password: String): Single<SessionEntity> =
+            randomPictureService.register(email.toRequestBody(),
+                    name.toRequestBody(),
+                    password.toRequestBody())
+                    .doOnSuccess {
+                        if (it.token != null)
+                            RandomPictureServiceFactory.addSession(it.token)
+                    }
+                    .map { userMapper.mapFromRemote(it) }
+
     override fun doLogin(email: String, password: String): Single<SessionEntity> =
             randomPictureService.login(email.toRequestBody(),
                     password.toRequestBody())

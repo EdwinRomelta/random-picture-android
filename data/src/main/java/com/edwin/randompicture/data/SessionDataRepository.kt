@@ -3,6 +3,7 @@ package com.edwin.randompicture.data
 import com.edwin.randompicture.data.mapper.SessionMapper
 import com.edwin.randompicture.data.source.session.SessionDataStoreFactory
 import com.edwin.randompicture.domain.interactor.usecase.Login
+import com.edwin.randompicture.domain.interactor.usecase.Register
 import com.edwin.randompicture.domain.model.Session
 import com.edwin.randompicture.domain.repository.SessionRepository
 import io.reactivex.Completable
@@ -20,6 +21,12 @@ class SessionDataRepository @Inject constructor(private val factory: SessionData
                                 .toFlowable()
                     }
                     .map { sessionMapper.mapFromEntity(it) }
+
+    override fun register(registerParam: Register.RegisterParam): Completable =
+            factory.retrieveRemoteDataStore().doRegister(registerParam)
+                    .flatMapCompletable {
+                        factory.retrieveCacheDataStore().store(it)
+                    }
 
     override fun login(loginParam: Login.LoginParam): Completable =
             factory.retrieveRemoteDataStore().doLogin(loginParam)

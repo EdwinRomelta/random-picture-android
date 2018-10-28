@@ -22,6 +22,9 @@
     <string name="signupscreen_erroremptypassword">Empty Password</string>
     <string name="registerscreen_reenterpasswordhint">Re-enter password</string>
     <string name="registerscreen_registerbutton">Sign Up</string>
+    <string name="registerscreen_erroremptyname">Empty Name</string>
+    <string name="registerscreen_errorpasswordmismatch">Password Mismatch</string>
     <string name="navigationdrawer_menulogout">Log Out</string>
     <string name="dialog_logoutconfirmation">Are you sure want to log out</string>
+    <string name="signupscreen_namehint">Name</string>
 </resources>

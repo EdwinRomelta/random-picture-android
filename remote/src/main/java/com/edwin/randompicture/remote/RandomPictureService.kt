@@ -25,6 +25,12 @@ interface RandomPictureService {
                  @Part("timestamp") createTimeStamp: RequestBody): Single<PostModel>
 
     @Multipart
+    @POST("register/")
+    fun register(@Part("email") email: RequestBody,
+                 @Part("name") name: RequestBody,
+                 @Part("password") password: RequestBody): Single<UserModel>
+
+    @Multipart
     @POST("login/")
     fun login(@Part("email") email: RequestBody,
               @Part("password") password: RequestBody): Single<UserModel>

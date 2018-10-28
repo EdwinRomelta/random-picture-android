@@ -4,6 +4,7 @@ import com.edwin.randompicture.data.model.SessionEntity
 import com.edwin.randompicture.data.repository.session.SessionDataStore
 import com.edwin.randompicture.data.repository.session.SessionRemote
 import com.edwin.randompicture.domain.interactor.usecase.Login
+import com.edwin.randompicture.domain.interactor.usecase.Register
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -15,6 +16,9 @@ class SessionRemoteDataStore @Inject constructor(
     override fun getSession(): Flowable<SessionEntity> {
         throw UnsupportedOperationException()
     }
+
+    override fun doRegister(registerParam: Register.RegisterParam): Single<SessionEntity> =
+            sessionRemote.doRegister(registerParam.email, registerParam.name, registerParam.password)
 
     override fun doLogin(loginParam: Login.LoginParam): Single<SessionEntity> =
             sessionRemote.doLogin(loginParam.email, loginParam.password)

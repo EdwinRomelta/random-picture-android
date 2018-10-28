@@ -4,6 +4,7 @@ import com.edwin.randompicture.data.model.SessionEntity
 import com.edwin.randompicture.data.repository.session.SessionCache
 import com.edwin.randompicture.data.repository.session.SessionDataStore
 import com.edwin.randompicture.domain.interactor.usecase.Login
+import com.edwin.randompicture.domain.interactor.usecase.Register
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -17,6 +18,10 @@ class SessionCacheDataStore @Inject constructor(
 
     override fun store(sessionEntity: SessionEntity): Completable =
             sessionCache.store(sessionEntity)
+
+    override fun doRegister(registerParam: Register.RegisterParam): Single<SessionEntity> {
+        throw UnsupportedOperationException()
+    }
 
     override fun doLogin(loginParam: Login.LoginParam): Single<SessionEntity> {
         throw UnsupportedOperationException()
