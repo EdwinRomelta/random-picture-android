@@ -14,4 +14,5 @@ interface SessionDataStore {
 
     fun store(sessionEntity: SessionEntity): Completable
 
+    fun clear(): Completable
 }

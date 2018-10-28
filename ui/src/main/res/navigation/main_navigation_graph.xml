@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainFragment_to_previewActivity"
             app:destination="@id/previewActivity" />
+        <action
+            android:id="@+id/action_mainFragment_to_splashActivity"
+            app:destination="@id/splashActivity" />
     </fragment>
     <activity
         android:id="@+id/captureActivity"
@@ -29,4 +32,8 @@
             android:name="imgUri"
             app:argType="string" />
     </activity>
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="com.edwin.randompicture.ui.screen.splash.SplashActivity"
+        android:label="SplashActivity" />
 </navigation>

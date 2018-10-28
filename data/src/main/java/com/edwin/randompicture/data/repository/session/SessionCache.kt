@@ -9,4 +9,6 @@ interface SessionCache {
     fun store(sessionEntity: SessionEntity): Completable
 
     fun get(): Flowable<SessionEntity>
+
+    fun clear(): Completable
 }

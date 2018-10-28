@@ -1,6 +1,8 @@
 <resources>
     <string name="all_appname">Random Picture</string>
     <string name="all_ok">OK</string>
+    <string name="all_yes">YES</string>
+    <string name="all_no">NO</string>
 
     <string name="permissionalert_opensetting">Open Setting</string>
     <string name="capturescreen_permissionrationale">In order to capture image we need camera and storage permission</string>
@@ -20,4 +22,6 @@
     <string name="signupscreen_erroremptypassword">Empty Password</string>
     <string name="registerscreen_reenterpasswordhint">Re-enter password</string>
     <string name="registerscreen_registerbutton">Sign Up</string>
+    <string name="navigationdrawer_menulogout">Log Out</string>
+    <string name="dialog_logoutconfirmation">Are you sure want to log out</string>
 </resources>

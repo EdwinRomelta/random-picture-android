@@ -22,4 +22,6 @@ class SessionCacheDataStore @Inject constructor(
         throw UnsupportedOperationException()
     }
 
+    override fun clear(): Completable = sessionCache.clear()
+
 }

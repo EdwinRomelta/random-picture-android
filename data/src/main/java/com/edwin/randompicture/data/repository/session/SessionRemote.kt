@@ -6,7 +6,7 @@ import io.reactivex.Single
 
 interface SessionRemote {
 
-    fun addSession(token: String?): Completable
+    fun setSession(token: String?): Completable
 
     fun doLogin(email: String, password: String): Single<SessionEntity>
 }

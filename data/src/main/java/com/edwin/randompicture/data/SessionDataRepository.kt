@@ -27,4 +27,8 @@ class SessionDataRepository @Inject constructor(private val factory: SessionData
                         factory.retrieveCacheDataStore().store(it)
                     }
 
+    override fun logout(): Completable =
+            factory.retrieveCacheDataStore().clear()
+                    .andThen(factory.retrieveRemoteDataStore().clear())
+
 }

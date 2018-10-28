@@ -93,4 +93,9 @@ class LoginFragment : BaseFragment(), Injectable {
             }
         })
     }
+
+    override fun onStop() {
+        super.onStop()
+        loginViewModel.loginResponse.removeObservers(this)
+    }
 }

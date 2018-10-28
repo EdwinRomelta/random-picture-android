@@ -34,7 +34,7 @@ class SessionSharedPreference @Inject constructor(preferences: SharedPreferences
                 avatar.set(cachedSession.avatarUrl ?: "")
             }
 
-    fun clear() {
+    fun clear() = Completable.fromCallable {
         rxSharedPreferences.clear()
     }
 

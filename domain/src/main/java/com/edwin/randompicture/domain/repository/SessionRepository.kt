@@ -10,4 +10,6 @@ interface SessionRepository {
     fun getSession(): Flowable<Session>
 
     fun login(loginParam: Login.LoginParam): Completable
+
+    fun logout(): Completable
 }

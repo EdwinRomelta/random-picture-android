@@ -19,18 +19,16 @@ class NavigationHeader private constructor(private val navigationHeaderBinding: 
         }
     }
 
-    init {
-        navigationHeaderBinding.nameTextView.setOnClickListener {
-            navigationHeaderListener.onLogin()
-        }
-    }
-
     fun setSession(sessionView: SessionView?) {
         navigationHeaderBinding.apply {
             if (sessionView != null) {
                 nameTextView.text = sessionView.name
+                nameTextView.setOnClickListener(null)
             } else {
                 nameTextView.setText(R.string.navigationheader_login)
+                nameTextView.setOnClickListener {
+                    navigationHeaderListener.onLogin()
+                }
             }
         }
     }

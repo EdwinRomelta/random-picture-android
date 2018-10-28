@@ -12,7 +12,7 @@ class SessionRemoteImpl @Inject constructor(
         private val randomPictureService: RandomPictureService,
         private val userMapper: UserMapper) : SessionRemote {
 
-    override fun addSession(token: String?): Completable =
+    override fun setSession(token: String?): Completable =
             Completable.fromCallable {
                 if (token != null) {
                     RandomPictureServiceFactory.addSession(token)

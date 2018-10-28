@@ -20,6 +20,9 @@ class SessionRemoteDataStore @Inject constructor(
             sessionRemote.doLogin(loginParam.email, loginParam.password)
 
     override fun store(sessionEntity: SessionEntity): Completable =
-            sessionRemote.addSession(sessionEntity.token)
+            sessionRemote.setSession(sessionEntity.token)
+
+    override fun clear(): Completable =
+            sessionRemote.setSession(null)
 
 }
