@@ -1,5 +1,6 @@
 package com.edwin.randompicture.remote
 
+import com.edwin.randompicture.remote.interceptor.ResponseCodeInterceptor
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,6 +13,10 @@ const val DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
 object RandomPictureServiceFactory {
 
+    private val gson = GsonBuilder()
+            .setLenient()
+            .setDateFormat(DATE_FORMAT)
+            .create()
     private val logging = HttpLoggingInterceptor()
             .apply {
                 level = HttpLoggingInterceptor.Level.BODY
@@ -21,11 +26,8 @@ object RandomPictureServiceFactory {
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
                     .addInterceptor(logging)
+                    .addInterceptor(ResponseCodeInterceptor(gson))
                     .build()
-    private val gson = GsonBuilder()
-            .setLenient()
-            .setDateFormat(DATE_FORMAT)
-            .create()
 
     fun createService(baseUrl: String): RandomPictureService =
             Retrofit.Builder()

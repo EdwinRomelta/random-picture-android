@@ -1,4 +1,5 @@
 <resources>
     <string name="capture_errorprocessingimage">Failed to process captured image</string>
     <string name="posts_errorretriveposts">Failed to retriving posts</string>
+    <string name="all_defaulterror">Oops something went wrong, please try again</string>
 </resources>

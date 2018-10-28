@@ -2,10 +2,8 @@ package com.edwin.randompicture.presentation.viewmodel.session
 
 import androidx.lifecycle.LiveData
 import com.edwin.randompicture.domain.interactor.usecase.Login
-import com.edwin.randompicture.presentation.R
 import com.edwin.randompicture.presentation.data.ActionLiveData
 import com.edwin.randompicture.presentation.data.Resource
-import com.edwin.randompicture.presentation.data.error.ToastErrorResource
 import com.edwin.randompicture.presentation.data.error.ValidationErrorResource
 import com.edwin.randompicture.presentation.viewmodel.BaseViewModel
 import io.reactivex.observers.DisposableCompletableObserver
@@ -42,7 +40,7 @@ class LoginViewModel(private val login: Login) : BaseViewModel() {
         }
 
         override fun onError(exception: Throwable) {
-            loginMutableLiveData.postValue(Resource.error(ToastErrorResource(R.string.capture_errorprocessingimage)))
+            loginMutableLiveData.postValue(Resource.error(exception))
         }
     }
 }

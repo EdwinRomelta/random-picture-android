@@ -5,7 +5,6 @@ import com.edwin.randompicture.domain.interactor.usecase.SavePhoto
 import com.edwin.randompicture.presentation.R
 import com.edwin.randompicture.presentation.data.ActionLiveData
 import com.edwin.randompicture.presentation.data.Resource
-import com.edwin.randompicture.presentation.data.error.ToastErrorResource
 import com.edwin.randompicture.presentation.mapper.PhotoMapper
 import com.edwin.randompicture.presentation.model.PhotoView
 import com.edwin.randompicture.presentation.viewmodel.BaseViewModel
@@ -25,7 +24,7 @@ class PhotoViewModel @Inject constructor(private val savePhoto: SavePhoto,
                             photoLiveData.postValue(Resource.success(photoMapper.mapToView(it)))
                         },
                         {
-                            photoLiveData.postValue(Resource.error(ToastErrorResource(R.string.capture_errorprocessingimage)))
+                            photoLiveData.postValue(Resource.error(it, R.string.capture_errorprocessingimage))
                         }
                 ))
     }

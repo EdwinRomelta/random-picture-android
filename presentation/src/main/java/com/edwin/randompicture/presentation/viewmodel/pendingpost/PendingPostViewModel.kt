@@ -7,7 +7,6 @@ import com.edwin.randompicture.domain.interactor.usecase.SavePendingPost
 import com.edwin.randompicture.domain.model.PendingPost
 import com.edwin.randompicture.presentation.R
 import com.edwin.randompicture.presentation.data.Resource
-import com.edwin.randompicture.presentation.data.error.ToastErrorResource
 import com.edwin.randompicture.presentation.data.error.ValidationErrorResource
 import com.edwin.randompicture.presentation.model.PendingPostView
 import com.edwin.randompicture.presentation.viewmodel.BaseViewModel
@@ -54,7 +53,7 @@ class PendingPostViewModel @Inject constructor(
         }
 
         override fun onError(exception: Throwable) {
-            uploadPendingPostLiveData.postValue(Resource.error(ToastErrorResource(R.string.capture_errorprocessingimage)))
+            uploadPendingPostLiveData.postValue(Resource.error(exception, R.string.capture_errorprocessingimage))
         }
     }
 }
