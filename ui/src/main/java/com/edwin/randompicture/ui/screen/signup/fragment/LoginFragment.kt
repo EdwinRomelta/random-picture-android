@@ -79,10 +79,13 @@ class LoginFragment : BaseFragment(), Injectable {
                         if (null != errorResource)
                             when (errorResource) {
                                 is ValidationErrorResource -> {
-                                    if (errorResource.errorCode == LoginViewModel.VALIDATION_EMPTY_EMAIL) {
+                                    if (errorResource.errorCode and LoginViewModel.VALIDATION_EMPTY_EMAIL > 0) {
                                         emailTextInputLayout.error = getString(R.string.signupscreen_erroremptyemail)
+                                    } else if (errorResource.errorCode and LoginViewModel.VALIDATION_INVALID_EMAIL > 0) {
+                                        emailTextInputLayout.error = getString(R.string.signupscreen_errorinvalidemail)
                                     }
-                                    if (errorResource.errorCode == LoginViewModel.VALIDATION_EMPTY_PASSWORD) {
+
+                                    if (errorResource.errorCode and LoginViewModel.VALIDATION_EMPTY_PASSWORD > 0) {
                                         passwordTextInputLayout.error = getString(R.string.signupscreen_erroremptypassword)
                                     }
                                 }

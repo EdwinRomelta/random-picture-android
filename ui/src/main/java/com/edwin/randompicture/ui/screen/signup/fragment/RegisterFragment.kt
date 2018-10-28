@@ -75,16 +75,23 @@ class RegisterFragment : BaseFragment(), Injectable {
                         if (null != errorResource)
                             when (errorResource) {
                                 is ValidationErrorResource -> {
-                                    if (errorResource.errorCode == RegisterViewModel.VALIDATION_EMPTY_EMAIL) {
+                                    if (errorResource.errorCode and RegisterViewModel.VALIDATION_EMPTY_EMAIL > 0) {
                                         emailTextInputLayout.error = getString(R.string.signupscreen_erroremptyemail)
+                                    } else if (errorResource.errorCode and RegisterViewModel.VALIDATION_INVALID_EMAIL > 0) {
+                                        emailTextInputLayout.error = getString(R.string.signupscreen_errorinvalidemail)
                                     }
-                                    if (errorResource.errorCode == RegisterViewModel.VALIDATION_EMPTY_NAME) {
+
+                                    if (errorResource.errorCode and RegisterViewModel.VALIDATION_EMPTY_NAME > 0) {
                                         nameTextInputLayout.error = getString(R.string.registerscreen_erroremptyname)
                                     }
-                                    if (errorResource.errorCode == RegisterViewModel.VALIDATION_EMPTY_PASSWORD) {
+
+                                    if (errorResource.errorCode and RegisterViewModel.VALIDATION_EMPTY_PASSWORD > 0) {
                                         passwordTextInputLayout.error = getString(R.string.signupscreen_erroremptypassword)
                                     }
-                                    if (errorResource.errorCode == RegisterViewModel.VALIDATION_PASSWORD_MISMATCH) {
+
+                                    if (errorResource.errorCode and RegisterViewModel.VALIDATION_EMPTY_CONFIRMATION_PASSWORD > 0) {
+                                        confirmPasswordTextInputLayout.error = getString(R.string.registerscreen_erroremptyconfirmationpassword)
+                                    } else if (errorResource.errorCode and RegisterViewModel.VALIDATION_PASSWORD_MISMATCH > 0) {
                                         confirmPasswordTextInputLayout.error = getString(R.string.registerscreen_errorpasswordmismatch)
                                     }
                                 }
