@@ -97,5 +97,3 @@ dependencies {
     androidTestImplementation deps.espresso.core
 
 }
-
-apply plugin: 'com.google.gms.google-services'
